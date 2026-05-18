@@ -211,4 +211,152 @@
             window.open(url, '_blank', 'noopener');
         });
     }
+
+    /* ================================================================
+       BESPOKE COMPONENTS
+       ================================================================ */
+
+    /* ---------- Cursor smoke (hero) ---------- */
+    if (!prefersReduced) {
+        const zone = document.querySelector('.smoke-zone');
+        const hint = document.querySelector('.smoke-hint');
+        if (zone) {
+            let last = 0;
+            let lastX = 0, lastY = 0;
+            const minDist = 16;     // skip very tight movements
+            const interval = 50;    // ms between puffs
+            let dismissedHint = false;
+
+            function spawn(x, y, kind) {
+                const puff = document.createElement('span');
+                puff.className = 'smoke-puff' + (kind === 'ember' ? ' ember-puff' : '');
+                puff.style.left = x + 'px';
+                puff.style.top = y + 'px';
+                puff.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
+                zone.appendChild(puff);
+                setTimeout(function () { puff.remove(); }, kind === 'ember' ? 1700 : 2300);
+            }
+
+            zone.addEventListener('mousemove', function (e) {
+                const now = performance.now();
+                if (now - last < interval) return;
+                const r = zone.getBoundingClientRect();
+                const x = e.clientX - r.left;
+                const y = e.clientY - r.top;
+                const dx = x - lastX, dy = y - lastY;
+                if (Math.sqrt(dx * dx + dy * dy) < minDist) return;
+                last = now;
+                lastX = x; lastY = y;
+
+                spawn(x, y, 'smoke');
+                if (Math.random() < 0.35) {
+                    spawn(x + (Math.random() * 14 - 7), y, 'ember');
+                }
+                if (!dismissedHint && hint) {
+                    hint.classList.add('dimmed');
+                    dismissedHint = true;
+                }
+            });
+
+            // tap on touch — single puff burst
+            zone.addEventListener('touchstart', function (e) {
+                const t = e.touches[0];
+                if (!t) return;
+                const r = zone.getBoundingClientRect();
+                const x = t.clientX - r.left, y = t.clientY - r.top;
+                for (let i = 0; i < 4; i++) {
+                    spawn(x + (Math.random() * 30 - 15), y + (Math.random() * 20 - 10), i % 2 ? 'ember' : 'smoke');
+                }
+            }, { passive: true });
+        }
+    }
+
+    /* ---------- Parrilla igniter ---------- */
+    const parrilla = document.querySelector('.parrilla');
+    if (parrilla) {
+        const rising = parrilla.querySelector('.parrilla-rising');
+        function light() {
+            parrilla.classList.add('lit');
+            const label = parrilla.querySelector('.parrilla-label');
+            if (label) label.textContent = 'Fuego encendido ✶ ready';
+            // populate rising embers
+            if (rising && !rising.children.length) {
+                for (let i = 0; i < 12; i++) {
+                    const e = document.createElement('span');
+                    e.className = 'rising-ember';
+                    e.style.left = (10 + Math.random() * 80) + '%';
+                    e.style.setProperty('--dx', Math.round(Math.random() * 60 - 30));
+                    e.style.animationDelay = (Math.random() * 3.5) + 's';
+                    e.style.animationDuration = (2.5 + Math.random() * 2.5) + 's';
+                    rising.appendChild(e);
+                }
+            }
+        }
+        function snuff() {
+            parrilla.classList.remove('lit');
+            const label = parrilla.querySelector('.parrilla-label');
+            if (label) label.textContent = 'Click to light the parrilla';
+            if (rising) rising.innerHTML = '';
+        }
+        parrilla.addEventListener('click', function () {
+            if (parrilla.classList.contains('lit')) snuff(); else light();
+        });
+        parrilla.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                parrilla.click();
+            }
+        });
+    }
+
+    /* ---------- Doneness slider ---------- */
+    const dn = document.querySelector('.doneness');
+    if (dn) {
+        const input = dn.querySelector('.doneness-input');
+        const body = dn.querySelector('.steak-body');
+        const char = dn.querySelector('.steak-char');
+        const grill = dn.querySelectorAll('.steak-grill');
+        const readout = dn.querySelector('.doneness-readout');
+        const labels = dn.querySelectorAll('.doneness-labels span');
+
+        const stages = [
+            { name: 'Raw',          desc: 'No, gracias.' },
+            { name: 'Jugoso · Rare', desc: 'How we usually serve entraña.' },
+            { name: 'A punto · Medium-rare', desc: 'House default. The cuts shine here.' },
+            { name: 'Cocido · Medium', desc: 'Sure, we can do that.' },
+            { name: 'Bien cocido · Well done', desc: 'Bruno will sigh, but he\'ll do it.' }
+        ];
+
+        function update() {
+            const v = parseInt(input.value, 10);
+            for (let i = 0; i <= 4; i++) body.classList.remove('d-' + i);
+            body.classList.add('d-' + v);
+            if (char) char.style.opacity = Math.min(0.9, v * 0.22);
+            grill.forEach(function (g, idx) {
+                g.style.opacity = v >= idx + 2 ? 0.85 : 0;
+            });
+            labels.forEach(function (l, i) {
+                l.classList.toggle('active', i === v);
+            });
+            const s = stages[v];
+            readout.innerHTML = '<strong>' + s.name + '</strong> — <em>' + s.desc + '</em>';
+        }
+        if (input) {
+            input.addEventListener('input', update);
+            update();
+        }
+    }
+
+    /* ---------- Heat meter on menu items ---------- */
+    document.querySelectorAll('.menu-item[data-temp]').forEach(function (item) {
+        const temp = parseInt(item.dataset.temp, 10); // 0..100 scale of heat
+        const tempC = item.dataset.tempLabel || (250 + Math.round(temp * 0.5) + '°C');
+        const meter = document.createElement('div');
+        meter.className = 'heat-meter';
+        meter.innerHTML =
+            '<div class="heat-bar" style="--inv: ' + (1 - temp / 100) + ';"></div>' +
+            '<div class="heat-temp">' + tempC + '</div>';
+        item.appendChild(meter);
+    });
+
 })();

@@ -39,7 +39,11 @@
     <!-- HERO -->
     <header class="hero">
         <div class="hero-bg" style="background-image: url('assets/images/asado-hero.jpg');"></div>
-        <div class="embers"></div>
+        <div class="smoke-zone armed" aria-hidden="true"></div>
+        <div class="smoke-hint">
+            <span class="dot"></span>
+            move your cursor — smoke rises from the embers
+        </div>
         <div class="container">
             <div class="hero-content">
                 <span class="eyebrow">Private Argentine Asado · Barcelona</span>
@@ -53,36 +57,38 @@
                     <span class="magnet"><a href="book.html" class="btn btn-primary btn-large sweep">Book an Asado</a></span>
                     <span class="magnet"><a href="experience.html" class="btn btn-ghost btn-large">How it Works</a></span>
                 </div>
+
+                <!-- Interactive parrilla igniter -->
+                <div class="parrilla" tabindex="0" role="button" aria-label="Light the parrilla">
+                    <svg class="parrilla-svg" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="coalGradient" cx="50%" cy="40%" r="60%">
+                                <stop offset="0%" stop-color="#ffd58a"/>
+                                <stop offset="40%" stop-color="#ff8a3d"/>
+                                <stop offset="100%" stop-color="#a02810"/>
+                            </radialGradient>
+                        </defs>
+                        <!-- legs -->
+                        <line class="parrilla-grate" x1="30" y1="58" x2="22" y2="92" />
+                        <line class="parrilla-grate" x1="170" y1="58" x2="178" y2="92" />
+                        <!-- pan -->
+                        <path class="parrilla-grate" d="M18 58 Q100 78 182 58 L172 70 Q100 88 28 70 Z" />
+                        <!-- grate -->
+                        <line class="parrilla-grate" x1="30" y1="48" x2="170" y2="48" />
+                        <line class="parrilla-grate" x1="34" y1="42" x2="166" y2="42" />
+                        <line class="parrilla-grate" x1="38" y1="36" x2="162" y2="36" />
+                        <!-- coals -->
+                        <ellipse class="coal c1" cx="60" cy="64" rx="12" ry="5" />
+                        <ellipse class="coal c2" cx="92" cy="66" rx="14" ry="5" />
+                        <ellipse class="coal c3" cx="124" cy="64" rx="13" ry="5" />
+                        <ellipse class="coal c4" cx="150" cy="66" rx="10" ry="4" />
+                    </svg>
+                    <span class="parrilla-label">Click to light the parrilla</span>
+                    <div class="parrilla-rising" aria-hidden="true"></div>
+                </div>
             </div>
         </div>
     </header>
-
-    <!-- MARQUEE -->
-    <div class="marquee" aria-hidden="true">
-        <div class="marquee-track">
-            <span class="marquee-item">Chorizo<span class="dot"></span></span>
-            <span class="marquee-item">Morcilla<span class="dot"></span></span>
-            <span class="marquee-item">Asado de tira<span class="dot"></span></span>
-            <span class="marquee-item">Vacío<span class="dot"></span></span>
-            <span class="marquee-item">Entraña<span class="dot"></span></span>
-            <span class="marquee-item">Picaña<span class="dot"></span></span>
-            <span class="marquee-item">Provoleta<span class="dot"></span></span>
-            <span class="marquee-item">Malbec<span class="dot"></span></span>
-            <span class="marquee-item">Fernet<span class="dot"></span></span>
-            <span class="marquee-item">Dulce de leche<span class="dot"></span></span>
-            <!-- duplicate for seamless loop -->
-            <span class="marquee-item">Chorizo<span class="dot"></span></span>
-            <span class="marquee-item">Morcilla<span class="dot"></span></span>
-            <span class="marquee-item">Asado de tira<span class="dot"></span></span>
-            <span class="marquee-item">Vacío<span class="dot"></span></span>
-            <span class="marquee-item">Entraña<span class="dot"></span></span>
-            <span class="marquee-item">Picaña<span class="dot"></span></span>
-            <span class="marquee-item">Provoleta<span class="dot"></span></span>
-            <span class="marquee-item">Malbec<span class="dot"></span></span>
-            <span class="marquee-item">Fernet<span class="dot"></span></span>
-            <span class="marquee-item">Dulce de leche<span class="dot"></span></span>
-        </div>
-    </div>
 
     <!-- VALUE GRID -->
     <section style="position: relative; overflow: hidden;">
