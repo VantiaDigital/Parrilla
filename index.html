@@ -36,14 +36,51 @@
         </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- HERO — big Argentine flag background -->
     <header class="hero">
-        <div class="hero-bg" style="background-image: url('assets/images/asado-hero.jpg');"></div>
-        <div class="smoke-zone armed" aria-hidden="true"></div>
-        <div class="smoke-hint">
-            <span class="dot"></span>
-            move your cursor — smoke rises from the embers
-        </div>
+        <!-- Big sol de mayo over the white band -->
+        <svg class="hero-sun" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+                <radialGradient id="sunGrad" cx="50%" cy="48%" r="55%">
+                    <stop offset="0%" stop-color="#ffe79a"/>
+                    <stop offset="55%" stop-color="#f5c542"/>
+                    <stop offset="100%" stop-color="#a76e0a"/>
+                </radialGradient>
+            </defs>
+            <!-- 16 alternating rays (straight + wavy) -->
+            <g fill="url(#sunGrad)" stroke="#7d4f04" stroke-width="0.8" stroke-linejoin="round">
+                <!-- straight rays at 8 cardinal/diagonal positions -->
+                <polygon points="100,4 106,52 94,52"/>
+                <polygon points="196,100 148,106 148,94"/>
+                <polygon points="100,196 94,148 106,148"/>
+                <polygon points="4,100 52,94 52,106"/>
+                <polygon points="168,32 134,72 126,64"/>
+                <polygon points="168,168 126,136 134,128"/>
+                <polygon points="32,168 64,128 72,136"/>
+                <polygon points="32,32 72,64 64,72"/>
+                <!-- wavy rays in between -->
+                <path d="M 148,18 Q 132,40 124,58 Q 116,40 116,18 Z"/>
+                <path d="M 182,148 Q 156,140 138,124 Q 156,116 182,116 Z"/>
+                <path d="M 52,182 Q 60,156 76,138 Q 84,156 84,182 Z"/>
+                <path d="M 18,52 Q 44,60 62,76 Q 44,84 18,84 Z"/>
+                <path d="M 182,52 Q 156,60 138,76 Q 156,84 182,84 Z"/>
+                <path d="M 148,182 Q 132,156 124,138 Q 116,156 116,182 Z"/>
+                <path d="M 18,148 Q 44,140 62,124 Q 44,116 18,116 Z"/>
+                <path d="M 52,18 Q 60,44 76,62 Q 84,44 84,18 Z"/>
+            </g>
+            <!-- central face circle -->
+            <circle cx="100" cy="100" r="42" fill="url(#sunGrad)" stroke="#7d4f04" stroke-width="2"/>
+            <!-- eyes -->
+            <ellipse cx="86" cy="92" rx="3" ry="4" fill="#7d4f04"/>
+            <ellipse cx="114" cy="92" rx="3" ry="4" fill="#7d4f04"/>
+            <!-- eyebrows -->
+            <path d="M 80 84 Q 86 80 92 84" fill="none" stroke="#7d4f04" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M 108 84 Q 114 80 120 84" fill="none" stroke="#7d4f04" stroke-width="1.6" stroke-linecap="round"/>
+            <!-- nose -->
+            <path d="M 100 98 L 96 112 L 104 112 Z" fill="#7d4f04"/>
+            <!-- mouth -->
+            <path d="M 86 120 Q 100 130 114 120" fill="none" stroke="#7d4f04" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
 
         <!-- Argentine flag badge — pinned to the hero -->
         <div class="ar-badge" aria-label="Made in Argentina">
@@ -67,7 +104,7 @@
                     place to gather, if you need one.
                 </p>
                 <div class="hero-actions">
-                    <span class="magnet"><a href="book.html" class="btn btn-primary btn-large sweep">Book an Asado</a></span>
+                    <span class="magnet"><a href="book.html" class="btn btn-primary btn-large sweep" data-smoke-nav>Book an Asado</a></span>
                     <span class="magnet"><a href="experience.html" class="btn btn-ghost btn-large">How it Works</a></span>
                 </div>
 

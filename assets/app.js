@@ -216,60 +216,69 @@
        BESPOKE COMPONENTS
        ================================================================ */
 
-    /* ---------- Cursor smoke (hero) ---------- */
-    if (!prefersReduced) {
-        const zone = document.querySelector('.smoke-zone');
-        const hint = document.querySelector('.smoke-hint');
-        if (zone) {
-            let last = 0;
-            let lastX = 0, lastY = 0;
-            const minDist = 16;     // skip very tight movements
-            const interval = 50;    // ms between puffs
-            let dismissedHint = false;
+    /* ---------- Smoke veil — fullscreen transition on Book CTA click ----------
+       Any anchor linking to book.html intercepts the click, fires a billowing
+       smoke fill from the click position, then navigates after the animation.
+       (Skipped when already on book.html, and when modifier-clicked.) */
+    const _hereForSmoke = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    document.querySelectorAll('a[href$="book.html"]').forEach(function (link) {
+        const linkHref = (link.getAttribute('href') || '').toLowerCase();
+        if (linkHref === _hereForSmoke) return; // skip self-links on book.html
+        link.addEventListener('click', function (e) {
+            // allow modifier-click / middle-click to open normally
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+            e.preventDefault();
+            const href = link.getAttribute('href');
+            if (!href) return;
 
-            function spawn(x, y, kind) {
+            const r = link.getBoundingClientRect();
+            const ox = r.left + r.width / 2;
+            const oy = r.top + r.height / 2;
+
+            const veil = document.createElement('div');
+            veil.className = 'smoke-veil';
+            veil.setAttribute('aria-hidden', 'true');
+
+            // ember flash that emanates from the button
+            const flash = document.createElement('div');
+            flash.className = 'veil-flash';
+            flash.style.setProperty('--cx', ox + 'px');
+            flash.style.setProperty('--cy', oy + 'px');
+            veil.appendChild(flash);
+
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            const maxDim = Math.max(vw, vh);
+
+            // 14 light puffs (smoke body) + 6 dark puffs (depth) emanating from origin
+            const total = prefersReduced ? 1 : 20;
+            for (let i = 0; i < total; i++) {
                 const puff = document.createElement('span');
-                puff.className = 'smoke-puff' + (kind === 'ember' ? ' ember-puff' : '');
-                puff.style.left = x + 'px';
-                puff.style.top = y + 'px';
-                puff.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
-                zone.appendChild(puff);
-                setTimeout(function () { puff.remove(); }, kind === 'ember' ? 1700 : 2300);
+                const isDark = i >= 14;
+                puff.className = 'veil-puff' + (isDark ? ' dark' : '');
+                puff.style.left = ox + 'px';
+                puff.style.top  = oy + 'px';
+
+                // drift toward random direction across the screen
+                const angle = Math.random() * Math.PI * 2;
+                const dist  = maxDim * (0.4 + Math.random() * 0.4);
+                puff.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+                puff.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+                puff.style.setProperty('--scale', (18 + Math.random() * 14).toString());
+                puff.style.setProperty('--rot', (Math.random() * 360 - 180) + 'deg');
+                puff.style.setProperty('--dur', (0.75 + Math.random() * 0.4) + 's');
+                puff.style.animationDelay = (i * 22) + 'ms';
+                veil.appendChild(puff);
             }
+            document.body.appendChild(veil);
 
-            zone.addEventListener('mousemove', function (e) {
-                const now = performance.now();
-                if (now - last < interval) return;
-                const r = zone.getBoundingClientRect();
-                const x = e.clientX - r.left;
-                const y = e.clientY - r.top;
-                const dx = x - lastX, dy = y - lastY;
-                if (Math.sqrt(dx * dx + dy * dy) < minDist) return;
-                last = now;
-                lastX = x; lastY = y;
-
-                spawn(x, y, 'smoke');
-                if (Math.random() < 0.35) {
-                    spawn(x + (Math.random() * 14 - 7), y, 'ember');
-                }
-                if (!dismissedHint && hint) {
-                    hint.classList.add('dimmed');
-                    dismissedHint = true;
-                }
-            });
-
-            // tap on touch — single puff burst
-            zone.addEventListener('touchstart', function (e) {
-                const t = e.touches[0];
-                if (!t) return;
-                const r = zone.getBoundingClientRect();
-                const x = t.clientX - r.left, y = t.clientY - r.top;
-                for (let i = 0; i < 4; i++) {
-                    spawn(x + (Math.random() * 30 - 15), y + (Math.random() * 20 - 10), i % 2 ? 'ember' : 'smoke');
-                }
-            }, { passive: true });
-        }
-    }
+            // Navigate after the screen is filled (slightly before the last puff finishes)
+            const delay = prefersReduced ? 250 : 720;
+            setTimeout(function () {
+                window.location.href = href;
+            }, delay);
+        });
+    });
 
     /* ---------- Parrilla igniter ---------- */
     const parrilla = document.querySelector('.parrilla');

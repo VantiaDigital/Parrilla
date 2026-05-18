@@ -202,7 +202,7 @@ h1, h2, h3, h4, h5 {
 /* spacer for fixed nav */
 .nav-spacer { height: 78px; }
 
-/* ---------- HERO ---------- */
+/* ---------- HERO — big Argentine flag background ---------- */
 .hero {
     position: relative;
     min-height: calc(100vh - 78px);
@@ -210,31 +210,67 @@ h1, h2, h3, h4, h5 {
     align-items: center;
     overflow: hidden;
     isolation: isolate;
+    /* Argentine flag horizontal stripes */
+    background:
+        linear-gradient(
+            180deg,
+            #74acdf 0%, #74acdf 33.33%,
+            #ffffff 33.33%, #ffffff 66.66%,
+            #74acdf 66.66%, #74acdf 100%
+        );
 }
 
-.hero-bg {
+/* Big sol de mayo in the white band */
+.hero-sun {
     position: absolute;
-    inset: 0;
-    z-index: -2;
-    background-size: cover;
-    background-position: center;
-    transform: scale(1.05);
-    filter: grayscale(15%) contrast(1.05);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(62vh, 56vw);
+    height: auto;
+    z-index: 0;
+    pointer-events: none;
+    filter: drop-shadow(0 8px 30px rgba(160, 106, 0, 0.45));
+    animation: sun-breathe 8s ease-in-out infinite;
+}
+@keyframes sun-breathe {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50%      { transform: translate(-50%, -50%) scale(1.025); }
 }
 
+/* Dark atmospheric overlay so text remains legible over the flag */
 .hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: 1;
     background:
-        radial-gradient(ellipse at 30% 70%, rgba(200, 74, 31, 0.18) 0%, transparent 55%),
-        linear-gradient(180deg, rgba(10, 8, 7, 0.55) 0%, rgba(10, 8, 7, 0.85) 60%, rgba(10, 8, 7, 0.95) 100%);
+        radial-gradient(ellipse at 50% 50%, rgba(10, 8, 7, 0.25) 0%, rgba(10, 8, 7, 0.7) 80%),
+        linear-gradient(180deg, rgba(10, 8, 7, 0.55) 0%, rgba(10, 8, 7, 0.3) 35%, rgba(10, 8, 7, 0.3) 65%, rgba(10, 8, 7, 0.85) 100%);
+    pointer-events: none;
 }
+
+/* Faint scan/grain over the flag for a "vintage poster" feel */
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.6;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+}
+
+.hero > .container,
+.hero > .ar-badge,
+.hero > .hero-sun { z-index: 2; }
 
 .hero-content {
     max-width: 720px;
     padding: 120px 0;
+    position: relative;
+    z-index: 3;
 }
 
 .hero h1 {
@@ -1482,79 +1518,62 @@ section { padding: 110px 0; }
    BESPOKE COMPONENTS — replacing template-y patterns
    ========================================================== */
 
-/* ---------- Cursor smoke (hero) ---------- */
-.smoke-zone {
-    position: absolute;
+/* ---------- Smoke veil — fullscreen transition on CTA click ---------- */
+.smoke-veil {
+    position: fixed;
     inset: 0;
-    z-index: 1;
+    z-index: 9999;
     pointer-events: none;
     overflow: hidden;
 }
-.smoke-zone.armed { pointer-events: auto; cursor: crosshair; background: transparent; }
-.smoke-puff {
+.veil-flash {
     position: absolute;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 50% 50%, rgba(243,237,226,0.42) 0%, rgba(243,237,226,0.18) 40%, transparent 70%);
-    pointer-events: none;
-    animation: smoke-rise 2.2s ease-out forwards;
-    will-change: transform, opacity;
-    mix-blend-mode: screen;
+    inset: 0;
+    background: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%),
+                rgba(255, 200, 110, 0.45) 0%,
+                rgba(200, 74, 31, 0.22) 28%,
+                transparent 60%);
+    opacity: 0;
+    animation: veil-flash 0.55s ease-out forwards;
 }
-.smoke-puff.ember-puff {
-    width: 6px;
-    height: 6px;
-    background: radial-gradient(circle, rgba(255, 200, 110, 1) 0%, rgba(200, 74, 31, 0.9) 50%, transparent 80%);
-    box-shadow: 0 0 12px rgba(200, 74, 31, 0.8);
-    animation: ember-rise 1.6s ease-out forwards;
+@keyframes veil-flash {
+    0%   { opacity: 0; }
+    25%  { opacity: 1; }
+    100% { opacity: 0; }
 }
-@keyframes smoke-rise {
-    0%   { transform: translate(-50%, -50%) scale(0.4); opacity: 0; }
-    15%  { opacity: 0.9; }
-    100% { transform: translate(calc(-50% + var(--drift, 0px)), -180px) scale(2.4); opacity: 0; }
-}
-@keyframes ember-rise {
-    0%   { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
-    20%  { opacity: 1; }
-    100% { transform: translate(calc(-50% + var(--drift, 0px)), -240px) scale(0.4); opacity: 0; }
-}
-
-/* hint shown until first cursor move inside hero */
-.smoke-hint {
+.veil-puff {
     position: absolute;
-    bottom: 28px;
-    right: 32px;
-    z-index: 3;
-    font-family: var(--serif);
-    font-style: italic;
-    color: var(--gold);
-    font-size: 0.92rem;
-    letter-spacing: 0.04em;
-    padding: 8px 16px;
-    background: rgba(10,8,7,0.55);
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(201,165,92,0.3);
-    border-radius: 999px;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.smoke-hint .dot {
-    display: inline-block;
-    width: 8px; height: 8px;
-    background: var(--ember);
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--ember);
-    animation: pulse-dot 1.4s ease-in-out infinite;
+    transform: translate(-50%, -50%) scale(0.1);
+    opacity: 0;
+    background: radial-gradient(circle,
+                rgba(255,255,255,0.96) 0%,
+                rgba(243,237,226,0.78) 35%,
+                rgba(60,40,28,0.4) 75%,
+                transparent 100%);
+    filter: blur(6px);
+    will-change: transform, opacity, filter;
+    animation: veil-billow var(--dur, 1s) cubic-bezier(.25,.06,.35,1) forwards;
 }
-@keyframes pulse-dot {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50%      { transform: scale(1.4); opacity: 0.7; }
+.veil-puff.dark {
+    background: radial-gradient(circle,
+                rgba(20,15,12,0.95) 0%,
+                rgba(10,8,7,0.82) 60%,
+                transparent 100%);
+    filter: blur(12px);
 }
-.smoke-hint.dimmed { opacity: 0; }
+@keyframes veil-billow {
+    0%   { transform: translate(-50%, -50%) scale(0.15) rotate(0deg); opacity: 0; }
+    18%  { opacity: 1; }
+    100% {
+        transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px)))
+                   scale(var(--scale, 32))
+                   rotate(var(--rot, 90deg));
+        opacity: 0.98;
+    }
+}
 
 /* ---------- Parrilla igniter ---------- */
 .parrilla {
