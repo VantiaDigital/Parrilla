@@ -1501,7 +1501,7 @@ section { padding: 110px 0; }
    BESPOKE COMPONENTS — replacing template-y patterns
    ========================================================== */
 
-/* ---------- Smoke veil — fullscreen transition on CTA click ---------- */
+/* ---------- Smoke wisp — small, subtle, realistic on CTA click ---------- */
 .smoke-veil {
     position: fixed;
     inset: 0;
@@ -1509,134 +1509,34 @@ section { padding: 110px 0; }
     pointer-events: none;
     overflow: hidden;
 }
-.veil-flash {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%),
-                rgba(255, 200, 110, 0.45) 0%,
-                rgba(200, 74, 31, 0.22) 28%,
-                transparent 60%);
-    opacity: 0;
-    animation: veil-flash 0.55s ease-out forwards;
-}
-@keyframes veil-flash {
-    0%   { opacity: 0; }
-    25%  { opacity: 1; }
-    100% { opacity: 0; }
-}
 .veil-puff {
     position: absolute;
-    width: 160px;
-    height: 160px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0.1);
+    transform: translate(-50%, -50%) scale(0.3);
     opacity: 0;
-    background: radial-gradient(circle,
-                rgba(255,255,255,0.96) 0%,
-                rgba(243,237,226,0.78) 35%,
-                rgba(60,40,28,0.4) 75%,
-                transparent 100%);
-    filter: blur(6px);
-    will-change: transform, opacity, filter;
-    animation: veil-billow var(--dur, 1s) cubic-bezier(.25,.06,.35,1) forwards;
+    /* soft grayish smoke — three subtle gradients for realism */
+    background:
+        radial-gradient(circle at 40% 60%, rgba(220, 215, 208, 0.38) 0%, transparent 55%),
+        radial-gradient(circle at 65% 45%, rgba(180, 175, 170, 0.32) 0%, transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(150, 145, 140, 0.28) 0%, transparent 70%);
+    filter: blur(10px);
+    mix-blend-mode: screen;
+    will-change: transform, opacity;
+    animation: wisp-rise var(--dur, 1.4s) cubic-bezier(.18,.55,.32,1) forwards;
 }
-.veil-puff.dark {
-    background: radial-gradient(circle,
-                rgba(20,15,12,0.95) 0%,
-                rgba(10,8,7,0.82) 60%,
-                transparent 100%);
-    filter: blur(12px);
-}
-@keyframes veil-billow {
-    0%   { transform: translate(-50%, -50%) scale(0.15) rotate(0deg); opacity: 0; }
-    18%  { opacity: 1; }
+@keyframes wisp-rise {
+    0%   { transform: translate(-50%, -50%) scale(0.3) rotate(0deg); opacity: 0; filter: blur(4px); }
+    20%  { opacity: 0.95; }
+    70%  { opacity: 0.6; }
     100% {
-        transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px)))
-                   scale(var(--scale, 32))
-                   rotate(var(--rot, 90deg));
-        opacity: 0.98;
+        transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, -180px)))
+                   scale(var(--scale, 3.2))
+                   rotate(var(--rot, 20deg));
+        opacity: 0;
+        filter: blur(18px);
     }
-}
-
-/* ---------- Parrilla igniter ---------- */
-.parrilla {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    padding: 32px 28px 24px;
-    border: 1px solid var(--line);
-    background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 100%);
-    border-radius: 6px;
-    margin-top: 32px;
-    max-width: 320px;
-    cursor: pointer;
-    transition: border-color 0.4s ease, box-shadow 0.4s ease;
-    user-select: none;
-}
-.parrilla:hover { border-color: var(--gold); }
-.parrilla.lit {
-    border-color: var(--ember);
-    box-shadow: 0 0 60px rgba(200, 74, 31, 0.25), inset 0 0 40px rgba(200, 74, 31, 0.08);
-}
-.parrilla-svg { width: 200px; height: 100px; }
-.parrilla-grate {
-    stroke: var(--ink-mute);
-    stroke-width: 2;
-    fill: none;
-    transition: stroke 0.4s ease;
-}
-.parrilla.lit .parrilla-grate { stroke: var(--gold); }
-.coal {
-    fill: #2a201c;
-    transition: fill 0.6s ease, filter 0.6s ease;
-}
-.parrilla.lit .coal {
-    fill: url(#coalGradient);
-    filter: drop-shadow(0 0 4px var(--ember));
-    animation: coal-flicker 1.8s ease-in-out infinite;
-}
-.parrilla.lit .coal.c2 { animation-delay: 0.4s; }
-.parrilla.lit .coal.c3 { animation-delay: 0.8s; }
-.parrilla.lit .coal.c4 { animation-delay: 1.2s; }
-@keyframes coal-flicker {
-    0%, 100% { filter: drop-shadow(0 0 4px var(--ember)); }
-    50%      { filter: drop-shadow(0 0 14px #ffb155); }
-}
-.parrilla-label {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--ink-soft);
-    letter-spacing: 0.02em;
-    text-align: center;
-    transition: color 0.4s ease;
-}
-.parrilla.lit .parrilla-label { color: var(--gold-soft); }
-.parrilla-rising {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    border-radius: 6px;
-}
-.rising-ember {
-    position: absolute;
-    bottom: 30%;
-    width: 4px; height: 4px;
-    background: var(--gold);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--ember);
-    opacity: 0;
-}
-.parrilla.lit .rising-ember {
-    animation: parrilla-ember 3.5s linear infinite;
-}
-@keyframes parrilla-ember {
-    0%   { transform: translate(0, 0) scale(0.6); opacity: 0; }
-    10%  { opacity: 1; }
-    100% { transform: translate(calc(var(--dx, 0) * 1px), -160px) scale(0.3); opacity: 0; }
 }
 
 /* ---------- Doneness slider (menu) ---------- */

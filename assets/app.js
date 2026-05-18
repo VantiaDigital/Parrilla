@@ -216,107 +216,58 @@
        BESPOKE COMPONENTS
        ================================================================ */
 
-    /* ---------- Smoke veil — fullscreen transition on Book CTA click ----------
-       Any anchor linking to book.html intercepts the click, fires a billowing
-       smoke fill from the click position, then navigates after the animation.
-       (Skipped when already on book.html, and when modifier-clicked.) */
+    /* ---------- Smoke wisp on Book CTA click ----------
+       Subtle, realistic smoke that rises from the button when clicked, then
+       navigates. Small puffs, soft gray, dispersing upward — NOT a fullscreen
+       fill. The page change happens while the smoke is still wisping. */
     const _hereForSmoke = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
     document.querySelectorAll('a[href$="book.html"]').forEach(function (link) {
         const linkHref = (link.getAttribute('href') || '').toLowerCase();
-        if (linkHref === _hereForSmoke) return; // skip self-links on book.html
+        if (linkHref === _hereForSmoke) return;
         link.addEventListener('click', function (e) {
-            // allow modifier-click / middle-click to open normally
             if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
             e.preventDefault();
             const href = link.getAttribute('href');
             if (!href) return;
 
             const r = link.getBoundingClientRect();
+            // emanate from the top edge of the button (where smoke naturally rises from)
             const ox = r.left + r.width / 2;
-            const oy = r.top + r.height / 2;
+            const oy = r.top + r.height * 0.35;
 
             const veil = document.createElement('div');
             veil.className = 'smoke-veil';
             veil.setAttribute('aria-hidden', 'true');
 
-            // ember flash that emanates from the button
-            const flash = document.createElement('div');
-            flash.className = 'veil-flash';
-            flash.style.setProperty('--cx', ox + 'px');
-            flash.style.setProperty('--cy', oy + 'px');
-            veil.appendChild(flash);
-
-            const vw = window.innerWidth;
-            const vh = window.innerHeight;
-            const maxDim = Math.max(vw, vh);
-
-            // 14 light puffs (smoke body) + 6 dark puffs (depth) emanating from origin
-            const total = prefersReduced ? 1 : 20;
+            // 6 small wisps, mostly rising upward with slight horizontal drift
+            const total = prefersReduced ? 1 : 6;
             for (let i = 0; i < total; i++) {
                 const puff = document.createElement('span');
-                const isDark = i >= 14;
-                puff.className = 'veil-puff' + (isDark ? ' dark' : '');
-                puff.style.left = ox + 'px';
-                puff.style.top  = oy + 'px';
+                puff.className = 'veil-puff';
+                // small random jitter around the origin
+                puff.style.left = (ox + (Math.random() * 24 - 12)) + 'px';
+                puff.style.top  = (oy + (Math.random() * 12 - 6)) + 'px';
 
-                // drift toward random direction across the screen
-                const angle = Math.random() * Math.PI * 2;
-                const dist  = maxDim * (0.4 + Math.random() * 0.4);
-                puff.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
-                puff.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
-                puff.style.setProperty('--scale', (18 + Math.random() * 14).toString());
-                puff.style.setProperty('--rot', (Math.random() * 360 - 180) + 'deg');
-                puff.style.setProperty('--dur', (0.75 + Math.random() * 0.4) + 's');
-                puff.style.animationDelay = (i * 22) + 'ms';
+                // drift: mostly UP (-y), a little sideways
+                const dx = (Math.random() * 80 - 40);            // -40..40 px sideways
+                const dy = -(140 + Math.random() * 120);          // -140..-260 px up
+                puff.style.setProperty('--dx', dx + 'px');
+                puff.style.setProperty('--dy', dy + 'px');
+                puff.style.setProperty('--scale', (2.4 + Math.random() * 1.4).toString());
+                puff.style.setProperty('--rot', (Math.random() * 40 - 20) + 'deg');
+                puff.style.setProperty('--dur', (1.2 + Math.random() * 0.4) + 's');
+                puff.style.animationDelay = (i * 70) + 'ms';
                 veil.appendChild(puff);
             }
             document.body.appendChild(veil);
 
-            // Navigate after the screen is filled (slightly before the last puff finishes)
-            const delay = prefersReduced ? 250 : 720;
+            // Short delay — smoke is still rising when the page changes
+            const delay = prefersReduced ? 180 : 480;
             setTimeout(function () {
                 window.location.href = href;
             }, delay);
         });
     });
-
-    /* ---------- Parrilla igniter ---------- */
-    const parrilla = document.querySelector('.parrilla');
-    if (parrilla) {
-        const rising = parrilla.querySelector('.parrilla-rising');
-        function light() {
-            parrilla.classList.add('lit');
-            const label = parrilla.querySelector('.parrilla-label');
-            if (label) label.textContent = 'Fuego encendido ✶ ready';
-            // populate rising embers
-            if (rising && !rising.children.length) {
-                for (let i = 0; i < 12; i++) {
-                    const e = document.createElement('span');
-                    e.className = 'rising-ember';
-                    e.style.left = (10 + Math.random() * 80) + '%';
-                    e.style.setProperty('--dx', Math.round(Math.random() * 60 - 30));
-                    e.style.animationDelay = (Math.random() * 3.5) + 's';
-                    e.style.animationDuration = (2.5 + Math.random() * 2.5) + 's';
-                    rising.appendChild(e);
-                }
-            }
-        }
-        function snuff() {
-            parrilla.classList.remove('lit');
-            const label = parrilla.querySelector('.parrilla-label');
-            if (label) label.textContent = 'Click to light the parrilla';
-            if (rising) rising.innerHTML = '';
-        }
-        parrilla.addEventListener('click', function () {
-            if (parrilla.classList.contains('lit')) snuff(); else light();
-        });
-        parrilla.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                parrilla.click();
-            }
-        });
-    }
 
     /* ---------- Doneness slider ---------- */
     const dn = document.querySelector('.doneness');
