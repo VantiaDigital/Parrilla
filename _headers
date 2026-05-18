@@ -1,0 +1,21 @@
+# Cloudflare Pages headers
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+# Long cache on static assets (CSS / JS / images). Cache-busting is handled
+# via the ?v=N query string on the stylesheet + script links in each HTML
+# page, so bumping that number is enough to invalidate clients.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Don't cache the HTML — always serve the latest
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
