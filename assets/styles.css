@@ -18,6 +18,10 @@
     --serif: 'Cormorant Garamond', 'Times New Roman', serif;
     --sans: 'Inter', system-ui, -apple-system, sans-serif;
     --max: 1240px;
+    --nav-h: 78px;
+}
+@media (max-width: 720px) {
+    :root { --nav-h: 60px; }
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -200,12 +204,13 @@ h1, h2, h3, h4, h5 {
 .menu-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 /* spacer for fixed nav */
-.nav-spacer { height: 78px; }
+.nav-spacer { height: var(--nav-h); }
 
 /* ---------- HERO — full-bleed dark immersive (asado photo) ---------- */
 .hero {
     position: relative;
-    min-height: calc(100vh - 78px);
+    min-height: calc(100vh - var(--nav-h));
+    min-height: calc(100dvh - var(--nav-h)); /* mobile-safe: accounts for url bar */
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -909,40 +914,76 @@ section { padding: 110px 0; }
 }
 
 @media (max-width: 720px) {
-    .container { padding: 0 22px; }
-    section { padding: 80px 0; }
-    .hero-content { padding: 80px 0; }
+    .container { padding: 0 20px; }
+    section { padding: 72px 0; }
 
-    .menu-toggle { display: flex; }
+    /* Compact mobile nav so the dropdown lands right below it */
+    .site-nav { height: var(--nav-h); }
+    .nav-inner {
+        padding: 0 18px;
+        height: 100%;
+        gap: 14px;
+    }
+    .brand { gap: 6px; }
+    .brand-mark {
+        font-size: 0.92rem;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 70vw;
+    }
+    .brand-sub { display: none; }
+
+    .menu-toggle { display: flex; flex-shrink: 0; }
 
     .nav-links {
         position: fixed;
-        top: 78px;
+        top: var(--nav-h);
         left: 0; right: 0;
+        z-index: 99;
         background: var(--bg);
         flex-direction: column;
         gap: 0;
-        padding: 24px;
+        padding: 18px 20px 24px;
         border-bottom: 1px solid var(--line);
-        transform: translateY(-110%);
-        transition: transform 0.3s ease;
+        box-shadow: 0 14px 30px rgba(0,0,0,0.5);
+        transform: translateY(calc(-100% - var(--nav-h) - 20px));
+        transition: transform 0.32s ease;
+        max-height: calc(100vh - var(--nav-h));
+        overflow-y: auto;
     }
-
     .nav-links.open { transform: translateY(0); }
-
     .nav-links li { width: 100%; }
-
     .nav-links a {
         display: block;
-        padding: 16px 0;
+        padding: 14px 0;
+        font-size: 0.88rem;
         border-bottom: 1px solid var(--line);
     }
+    .nav-links li:last-child a { border-bottom: none; }
 
     .nav-cta { display: none; }
 
+    /* Hero — give content room, don't let it touch the nav */
+    .hero-content { padding: 90px 0 110px; max-width: 100%; }
+    .hero-actions { gap: 12px; margin-top: 28px; }
+    .hero-actions .magnet { display: inline-block; width: auto; }
+    .hero-actions .btn { padding: 16px 24px; font-size: 0.78rem; letter-spacing: 0.18em; }
+
+    /* Argentine flag badge: hide on mobile — it collides with hero text */
+    .ar-badge { display: none; }
+
+    /* Section heads + h1 a bit tighter */
+    .section-head { margin-bottom: 44px; }
+    .hero h1 {
+        font-size: clamp(2.6rem, 11vw, 4.2rem);
+        line-height: 1;
+    }
+
     .form-row { grid-template-columns: 1fr; }
-    .booking-form { padding: 32px 24px; }
-    .contact-card { padding: 28px 24px; }
+    .booking-form { padding: 28px 22px; }
+    .contact-card { padding: 24px 22px; }
 
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     .footer-bottom { flex-direction: column; text-align: center; }
@@ -953,6 +994,17 @@ section { padding: 110px 0; }
         gap: 6px;
     }
     .spec-desc { text-align: left; }
+
+    /* The booking grid stacks already; tighten gap */
+    .booking-grid { gap: 28px; }
+}
+
+/* Very narrow phones (≤380px) — additional compaction */
+@media (max-width: 380px) {
+    .brand-mark { font-size: 0.82rem; max-width: 64vw; }
+    .nav-inner { padding: 0 14px; gap: 10px; }
+    .hero h1 { font-size: clamp(2.2rem, 12vw, 3.6rem); }
+    .container { padding: 0 16px; }
 }
 
 /* ==========================================================
@@ -1768,6 +1820,17 @@ section { padding: 110px 0; }
     color: var(--gold);
     margin-top: 14px;
     min-height: 1.5em;
+}
+/* On mobile, swap the full labels for short abbreviations to keep them readable */
+.doneness-labels span .full { display: inline; }
+.doneness-labels span .abbr { display: none; }
+@media (max-width: 600px) {
+    .doneness { padding: 30px 22px; }
+    .doneness-labels { font-size: 0.6rem; letter-spacing: 0.1em; margin-top: 18px; }
+    .doneness-labels span .full { display: none; }
+    .doneness-labels span .abbr { display: inline; }
+    .doneness-readout { font-size: 1.15rem; }
+    .steak-svg { width: 170px; height: 110px; }
 }
 
 /* ---------- Heat meter (menu item hover) ---------- */
