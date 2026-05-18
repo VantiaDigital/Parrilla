@@ -36,16 +36,15 @@
         </div>
     </nav>
 
-    <!-- HERO — asymmetric split, portrait-framed photo, coal bar at the bottom -->
+    <!-- HERO -->
     <header class="hero">
-        <div class="smoke-zone" aria-hidden="true"></div>
+        <div class="hero-bg" style="background-image: url('assets/images/asado-hero.jpg');"></div>
+        <div class="smoke-zone armed" aria-hidden="true"></div>
         <div class="smoke-hint">
             <span class="dot"></span>
-            move your cursor anywhere in the hero
+            move your cursor — smoke rises from the embers
         </div>
-
-        <div class="hero-grid">
-            <!-- Left: text + CTAs -->
+        <div class="container">
             <div class="hero-content">
                 <span class="eyebrow">Private Argentine Asado · Barcelona</span>
                 <h1 data-split>The asado, brought to you.</h1>
@@ -58,38 +57,36 @@
                     <span class="magnet"><a href="book.html" class="btn btn-primary btn-large sweep">Book an Asado</a></span>
                     <span class="magnet"><a href="experience.html" class="btn btn-ghost btn-large">How it Works</a></span>
                 </div>
-            </div>
 
-            <!-- Middle: thin gold channel with rising smoke -->
-            <div class="hero-channel" aria-hidden="true">
-                <div class="channel-smoke"></div>
+                <!-- Interactive parrilla igniter -->
+                <div class="parrilla" tabindex="0" role="button" aria-label="Light the parrilla">
+                    <svg class="parrilla-svg" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="coalGradient" cx="50%" cy="40%" r="60%">
+                                <stop offset="0%" stop-color="#ffd58a"/>
+                                <stop offset="40%" stop-color="#ff8a3d"/>
+                                <stop offset="100%" stop-color="#a02810"/>
+                            </radialGradient>
+                        </defs>
+                        <!-- legs -->
+                        <line class="parrilla-grate" x1="30" y1="58" x2="22" y2="92" />
+                        <line class="parrilla-grate" x1="170" y1="58" x2="178" y2="92" />
+                        <!-- pan -->
+                        <path class="parrilla-grate" d="M18 58 Q100 78 182 58 L172 70 Q100 88 28 70 Z" />
+                        <!-- grate -->
+                        <line class="parrilla-grate" x1="30" y1="48" x2="170" y2="48" />
+                        <line class="parrilla-grate" x1="34" y1="42" x2="166" y2="42" />
+                        <line class="parrilla-grate" x1="38" y1="36" x2="162" y2="36" />
+                        <!-- coals -->
+                        <ellipse class="coal c1" cx="60" cy="64" rx="12" ry="5" />
+                        <ellipse class="coal c2" cx="92" cy="66" rx="14" ry="5" />
+                        <ellipse class="coal c3" cx="124" cy="64" rx="13" ry="5" />
+                        <ellipse class="coal c4" cx="150" cy="66" rx="10" ry="4" />
+                    </svg>
+                    <span class="parrilla-label">Click to light the parrilla</span>
+                    <div class="parrilla-rising" aria-hidden="true"></div>
+                </div>
             </div>
-
-            <!-- Right: framed portrait -->
-            <div class="hero-portrait">
-                <span class="hero-portrait-tag">— el fuego —</span>
-                <div class="hero-portrait-img" style="background-image: url('assets/images/asado-hero.jpg');"></div>
-            </div>
-        </div>
-
-        <!-- Coal bar igniter: full-width strip at the bottom -->
-        <div class="coal-bar" aria-label="Light the coals">
-            <span class="coal-bar-label"><span class="led"></span><span class="text">Click to light the coals</span></span>
-            <div class="coal-bar-line">
-                <span class="coal-piece"></span>
-                <span class="coal-piece"></span>
-                <span class="coal-piece"></span>
-                <span class="coal-piece"></span>
-                <span class="coal-piece"></span>
-                <span class="coal-piece"></span>
-                <span class="coal-piece"></span>
-                <span class="coal-piece"></span>
-                <span class="coal-piece"></span>
-                <span class="coal-piece"></span>
-                <span class="coal-piece"></span>
-                <span class="coal-piece"></span>
-            </div>
-            <div class="coal-bar-embers" aria-hidden="true"></div>
         </div>
     </header>
 
@@ -142,26 +139,23 @@
                     <h2>One grill,<br /><em>since we were kids.</em></h2>
                     <a href="about.html" class="btn btn-ghost" style="margin-top: 28px;">Read our story →</a>
                 </div>
-                <div class="reveal bros-stage" data-bros>
+                <div class="reveal">
                     <div class="bro-names" aria-label="Bruno and Facundo">
-                        <span data-bro="bruno">Bruno</span>
+                        <span>Bruno</span>
                         <span class="amp">&amp;</span>
-                        <span class="second" data-bro="facundo">Facundo</span>
+                        <span class="second">Facundo</span>
                     </div>
-                    <div class="bros-body" data-bros-body style="margin-top: 36px; color: var(--ink-soft); font-size: 1.05rem; max-width: 560px;">
-                        <p style="margin-bottom: 16px;">
-                            We're two brothers from Argentina, now living in Barcelona. Back home,
-                            Sunday meant an asado — neighbours, cousins, music, hours at the table.
-                            That's the experience we bring to your event.
-                        </p>
-                        <p>
-                            Not a buffet, not a food-truck. A proper Argentine parrilla, hosted by
-                            people who care about how the chorizo is bitten before the entraña hits
-                            the grill.
-                        </p>
-                    </div>
-                    <span class="bros-hint">hover a name to meet each brother</span>
-                    <div class="bro-tags" style="margin-top: 22px;">
+                    <p style="margin-top: 36px; color: var(--ink-soft); font-size: 1.05rem; max-width: 560px;">
+                        We're two brothers from Argentina, now living in Barcelona. Back home,
+                        Sunday meant an asado — neighbours, cousins, music, hours at the table.
+                        That's the experience we bring to your event.
+                    </p>
+                    <p style="color: var(--ink-soft); font-size: 1.05rem; max-width: 560px; margin-top: 16px;">
+                        Not a buffet, not a food-truck. A proper Argentine parrilla, hosted by
+                        people who care about how the chorizo is bitten before the entraña hits
+                        the grill.
+                    </p>
+                    <div class="bro-tags">
                         <span class="bro-tag">Asadores</span>
                         <span class="bro-tag">From Rosario, AR</span>
                         <span class="bro-tag">EN · ES · IT</span>

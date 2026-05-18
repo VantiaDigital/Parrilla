@@ -216,16 +216,15 @@
        BESPOKE COMPONENTS
        ================================================================ */
 
-    /* ---------- Cursor smoke (hero) — listener on parent so clicks pass through ---------- */
+    /* ---------- Cursor smoke (hero) ---------- */
     if (!prefersReduced) {
-        const hero = document.querySelector('.hero');
         const zone = document.querySelector('.smoke-zone');
         const hint = document.querySelector('.smoke-hint');
-        if (hero && zone) {
+        if (zone) {
             let last = 0;
             let lastX = 0, lastY = 0;
-            const minDist = 14;
-            const interval = 42;
+            const minDist = 16;     // skip very tight movements
+            const interval = 50;    // ms between puffs
             let dismissedHint = false;
 
             function spawn(x, y, kind) {
@@ -233,27 +232,25 @@
                 puff.className = 'smoke-puff' + (kind === 'ember' ? ' ember-puff' : '');
                 puff.style.left = x + 'px';
                 puff.style.top = y + 'px';
-                puff.style.setProperty('--drift', (Math.random() * 80 - 40) + 'px');
+                puff.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
                 zone.appendChild(puff);
-                setTimeout(function () { puff.remove(); }, kind === 'ember' ? 1900 : 2500);
+                setTimeout(function () { puff.remove(); }, kind === 'ember' ? 1700 : 2300);
             }
 
-            hero.addEventListener('mousemove', function (e) {
+            zone.addEventListener('mousemove', function (e) {
                 const now = performance.now();
                 if (now - last < interval) return;
                 const r = zone.getBoundingClientRect();
                 const x = e.clientX - r.left;
                 const y = e.clientY - r.top;
-                if (x < 0 || x > r.width || y < 0 || y > r.height) return;
                 const dx = x - lastX, dy = y - lastY;
                 if (Math.sqrt(dx * dx + dy * dy) < minDist) return;
                 last = now;
                 lastX = x; lastY = y;
 
                 spawn(x, y, 'smoke');
-                // 40% chance: also spawn an ember
-                if (Math.random() < 0.4) {
-                    spawn(x + (Math.random() * 16 - 8), y, 'ember');
+                if (Math.random() < 0.35) {
+                    spawn(x + (Math.random() * 14 - 7), y, 'ember');
                 }
                 if (!dismissedHint && hint) {
                     hint.classList.add('dimmed');
@@ -261,109 +258,17 @@
                 }
             });
 
-            // touch — burst on tap
-            hero.addEventListener('touchstart', function (e) {
+            // tap on touch — single puff burst
+            zone.addEventListener('touchstart', function (e) {
                 const t = e.touches[0];
                 if (!t) return;
                 const r = zone.getBoundingClientRect();
                 const x = t.clientX - r.left, y = t.clientY - r.top;
-                if (x < 0 || x > r.width || y < 0 || y > r.height) return;
-                for (let i = 0; i < 5; i++) {
-                    spawn(x + (Math.random() * 36 - 18), y + (Math.random() * 24 - 12), i % 2 ? 'ember' : 'smoke');
+                for (let i = 0; i < 4; i++) {
+                    spawn(x + (Math.random() * 30 - 15), y + (Math.random() * 20 - 10), i % 2 ? 'ember' : 'smoke');
                 }
             }, { passive: true });
         }
-    }
-
-    /* ---------- Continuous channel smoke (between hero columns) ---------- */
-    if (!prefersReduced) {
-        const channel = document.querySelector('.channel-smoke');
-        if (channel) {
-            const PUFF_COUNT = 7;
-            for (let i = 0; i < PUFF_COUNT; i++) {
-                const p = document.createElement('span');
-                p.className = 'channel-puff';
-                p.style.animationDelay = (i * (5 / PUFF_COUNT)) + 's';
-                p.style.setProperty('--dx', (Math.random() * 40 - 20) + 'px');
-                channel.appendChild(p);
-            }
-        }
-    }
-
-    /* ---------- Coal bar igniter (bottom of hero) ---------- */
-    const coalBar = document.querySelector('.coal-bar');
-    if (coalBar) {
-        const embersHost = coalBar.querySelector('.coal-bar-embers');
-        function toggle() {
-            const wasLit = coalBar.classList.toggle('lit');
-            const label = coalBar.querySelector('.coal-bar-label .text');
-            if (label) label.textContent = wasLit ? 'Fuego encendido' : 'Click to light the coals';
-            if (wasLit && embersHost && !embersHost.children.length) {
-                for (let i = 0; i < 22; i++) {
-                    const e = document.createElement('span');
-                    e.className = 'coal-bar-ember';
-                    e.style.left = (Math.random() * 100) + '%';
-                    e.style.setProperty('--dx', Math.round(Math.random() * 80 - 40));
-                    e.style.animationDelay = (Math.random() * 4) + 's';
-                    e.style.animationDuration = (3 + Math.random() * 3) + 's';
-                    embersHost.appendChild(e);
-                }
-            } else if (!wasLit && embersHost) {
-                embersHost.innerHTML = '';
-            }
-        }
-        coalBar.addEventListener('click', toggle);
-        coalBar.setAttribute('role', 'button');
-        coalBar.setAttribute('tabindex', '0');
-        coalBar.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-        });
-    }
-
-    /* ---------- Brothers hover-reveal ---------- */
-    const bros = document.querySelector('[data-bros]');
-    if (bros) {
-        const names = bros.querySelectorAll('[data-bro]');
-        const body = bros.querySelector('[data-bros-body]');
-        const defaultHTML = body ? body.innerHTML : '';
-        const bios = {
-            bruno: '<strong style="color: var(--gold); font-weight: 500;">Bruno</strong> — older brother, lead asador. Runs the fire and the timing. Grew up watching their father work the parrilla in Rosario. Trained in the kitchen before the kitchen trained him.',
-            facundo: '<strong style="color: var(--gold); font-weight: 500;">Facundo</strong> — younger brother, hospitality &amp; service. Handles logistics, drinks pairing and the front of the table. The one you\'ll message while planning, who keeps the wine flowing on the day.'
-        };
-        names.forEach(function (n) {
-            const who = n.dataset.bro;
-            n.addEventListener('mouseenter', function () {
-                names.forEach(function (m) {
-                    m.classList.toggle('bro-dim', m !== n);
-                    m.classList.toggle('bro-focus', m === n);
-                });
-                if (body) body.innerHTML = bios[who] || defaultHTML;
-            });
-            n.addEventListener('mouseleave', function () {
-                names.forEach(function (m) {
-                    m.classList.remove('bro-dim');
-                    m.classList.remove('bro-focus');
-                });
-                if (body) body.innerHTML = defaultHTML;
-            });
-            // touch toggle
-            n.addEventListener('click', function () {
-                const wasFocus = n.classList.contains('bro-focus');
-                names.forEach(function (m) {
-                    m.classList.remove('bro-focus');
-                    m.classList.remove('bro-dim');
-                });
-                if (!wasFocus) {
-                    names.forEach(function (m) {
-                        m.classList.toggle('bro-dim', m !== n);
-                        m.classList.toggle('bro-focus', m === n);
-                    });
-                    if (body) body.innerHTML = bios[who] || defaultHTML;
-                } else {
-                    if (body) body.innerHTML = defaultHTML;
-                }
-            });
-        });
     }
 
     /* ---------- Parrilla igniter ---------- */
