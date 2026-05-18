@@ -14,20 +14,27 @@
 </head>
 <body>
 
+    <!-- LANGUAGE BAR -->
+    <div class="lang-bar" role="group" aria-label="Language">
+        <button class="lang-opt" data-set-lang="en" type="button">English</button>
+        <span class="sep" aria-hidden="true">·</span>
+        <button class="lang-opt" data-set-lang="es" type="button">Español</button>
+    </div>
+
     <nav class="site-nav">
         <div class="nav-inner">
             <a href="index.html" class="brand">
                 <span class="brand-mark">Los Hermanos Parrilleros</span>
-                <span class="brand-sub">Argentine asado · Barcelona</span>
+                <span class="brand-sub"><span data-lang="en">Argentine asado · Barcelona</span><span data-lang="es">Asado argentino · Barcelona</span></span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="experience.html">The Experience</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a></li>
+                <li><a href="experience.html"><span data-lang="en">The Experience</span><span data-lang="es">La Experiencia</span></a></li>
+                <li><a href="menu.html"><span data-lang="en">Menu</span><span data-lang="es">Menú</span></a></li>
+                <li><a href="events.html"><span data-lang="en">Events</span><span data-lang="es">Eventos</span></a></li>
+                <li><a href="about.html"><span data-lang="en">About</span><span data-lang="es">Nosotros</span></a></li>
             </ul>
-            <a href="book.html" class="nav-cta">Book an Asado</a>
+            <a href="book.html" class="nav-cta"><span data-lang="en">Book an Asado</span><span data-lang="es">Reservar Asado</span></a>
             <button class="menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
@@ -39,12 +46,14 @@
         <span class="deco-numeral tr" aria-hidden="true">E</span>
         <div class="container" style="position: relative; z-index: 1;">
             <div class="section-head reveal" style="max-width: 820px;">
-                <span class="eyebrow">The Experience</span>
-                <h2 data-split>This isn't dinner. It's an Argentine afternoon.</h2>
+                <span class="eyebrow"><span data-lang="en">The Experience</span><span data-lang="es">La Experiencia</span></span>
+                <h2>
+                    <span data-lang="en">This isn't dinner. It's an Argentine afternoon.</span>
+                    <span data-lang="es">Esto no es una cena. Es una tarde argentina.</span>
+                </h2>
                 <p class="lead" style="margin-top: 28px;">
-                    An asado is a slow social event built around the grill — typically 4 to 6
-                    hours, starting with chorizo and finishing with coffee and a digestif.
-                    Below is what to expect, hour by hour, when you book us.
+                    <span data-lang="en">An asado is a slow social event built around the grill — typically 4 to 6 hours of long table, cold drinks and meat coming off the fire in waves.</span>
+                    <span data-lang="es">El asado es un evento social tranquilo alrededor de la parrilla — típicamente 4 a 6 horas de sobremesa, bebidas frías y carne que sale del fuego en tandas.</span>
                 </p>
             </div>
         </div>
@@ -55,19 +64,36 @@
         <div class="container">
             <div class="split reveal">
                 <div class="split-body">
-                    <span class="eyebrow">All included</span>
-                    <h2>One price.<br /><em>Everything covered.</em></h2>
+                    <span class="eyebrow"><span data-lang="en">All included</span><span data-lang="es">Todo incluido</span></span>
+                    <h2>
+                        <span data-lang="en">One price.<br /><em>Everything covered.</em></span>
+                        <span data-lang="es">Un precio.<br /><em>Todo cubierto.</em></span>
+                    </h2>
                     <p>
-                        We work with a single per-person quote based on the menu you choose
-                        and the number of guests. There are no service charges, no fuel fees,
-                        no last-minute additions.
+                        <span data-lang="en">We work with a single per-person quote based on the menu and the number of guests. No service charges, no fuel fees, no last-minute additions.</span>
+                        <span data-lang="es">Trabajamos con un único precio por persona según el menú y la cantidad de invitados. Sin cargos de servicio, sin extras de combustible, sin sorpresas a último momento.</span>
                     </p>
                     <ul class="spec-list" style="margin-top: 24px;">
-                        <li><span class="spec-name">The food</span><span class="spec-desc">asado cuts, bread, chimichurri, salsa criolla, vegetables</span></li>
-                        <li><span class="spec-name">The drinks</span><span class="spec-desc">canned beer, soft drinks, water, canned cocktails, ice</span></li>
-                        <li><span class="spec-name">The equipment</span><span class="spec-desc">parrilla, charcoal, tables, disposable plates &amp; cutlery</span></li>
-                        <li><span class="spec-name">The asadores</span><span class="spec-desc">Bruno &amp; Facundo — start to finish</span></li>
-                        <li><span class="spec-name">Setup &amp; cleanup</span><span class="spec-desc">we leave the place as we found it</span></li>
+                        <li>
+                            <span class="spec-name"><span data-lang="en">The food</span><span data-lang="es">La comida</span></span>
+                            <span class="spec-desc"><span data-lang="en">asado cuts, bread, chimichurri, salsa criolla, vegetables</span><span data-lang="es">cortes de asado, pan, chimichurri, salsa criolla, verduras</span></span>
+                        </li>
+                        <li>
+                            <span class="spec-name"><span data-lang="en">The drinks</span><span data-lang="es">Las bebidas</span></span>
+                            <span class="spec-desc"><span data-lang="en">canned beer, soft drinks, water, canned cocktails, ice</span><span data-lang="es">cerveza en lata, gaseosas, agua, tragos en lata, hielo</span></span>
+                        </li>
+                        <li>
+                            <span class="spec-name"><span data-lang="en">The equipment</span><span data-lang="es">El equipamiento</span></span>
+                            <span class="spec-desc"><span data-lang="en">parrilla, charcoal, tables, tableware — all on us</span><span data-lang="es">parrilla, carbón, mesas, vajilla — todo nosotros</span></span>
+                        </li>
+                        <li>
+                            <span class="spec-name"><span data-lang="en">The asadores</span><span data-lang="es">Los asadores</span></span>
+                            <span class="spec-desc"><span data-lang="en">Bruno &amp; Facundo — start to finish</span><span data-lang="es">Bruno y Facundo — de principio a fin</span></span>
+                        </li>
+                        <li>
+                            <span class="spec-name"><span data-lang="en">Setup &amp; cleanup</span><span data-lang="es">Armado y limpieza</span></span>
+                            <span class="spec-desc"><span data-lang="en">we leave the place as we found it</span><span data-lang="es">dejamos el lugar como lo encontramos</span></span>
+                        </li>
                     </ul>
                 </div>
                 <div class="split-media" style="background-image: url('assets/images/asado-hero.jpg');"></div>
@@ -79,24 +105,36 @@
     <section class="stat-strip">
         <div class="container">
             <div class="section-head center reveal" style="margin-bottom: 48px;">
-                <span class="eyebrow center">Where we set up</span>
-                <h2>Your place, or a place we'll find for you.</h2>
+                <span class="eyebrow center"><span data-lang="en">Where we set up</span><span data-lang="es">Dónde armamos</span></span>
+                <h2>
+                    <span data-lang="en">Your place, or a place we'll find for you.</span>
+                    <span data-lang="es">Tu lugar, o un lugar que buscamos por vos.</span>
+                </h2>
             </div>
             <div class="feature-grid reveal">
                 <div class="feature tilt">
                     <div class="feature-num">A</div>
-                    <h3>Your Airbnb or rental</h3>
-                    <p>If your place has a terrace, garden, rooftop or pool area, we'll bring the asado to you. We work cleanly and respect house rules.</p>
+                    <h3><span data-lang="en">Your home or rental</span><span data-lang="es">Tu casa o alquiler</span></h3>
+                    <p>
+                        <span data-lang="en">If your place has a terrace, garden, rooftop or pool area, we'll bring the asado to you. We work cleanly and respect house rules.</span>
+                        <span data-lang="es">Si tu lugar tiene terraza, jardín, azotea o pileta, te llevamos el asado. Trabajamos prolijo y respetamos las reglas del lugar.</span>
+                    </p>
                 </div>
                 <div class="feature tilt">
                     <div class="feature-num">B</div>
-                    <h3>Your home in Barcelona</h3>
-                    <p>For locals and expats with a balcony or patio. We adapt to small spaces — the parrilla can run on a 2&nbsp;×&nbsp;1&nbsp;m terrace.</p>
+                    <h3><span data-lang="en">Your home in Barcelona</span><span data-lang="es">Tu casa en Barcelona</span></h3>
+                    <p>
+                        <span data-lang="en">For locals with a balcony or patio. We adapt to small spaces — the parrilla can run on a 2&nbsp;×&nbsp;1&nbsp;m terrace.</span>
+                        <span data-lang="es">Para locales con balcón o patio. Nos adaptamos a espacios chicos — la parrilla anda en una terraza de 2&nbsp;×&nbsp;1&nbsp;m.</span>
+                    </p>
                 </div>
                 <div class="feature tilt">
                     <div class="feature-num">C</div>
-                    <h3>A venue we book for you</h3>
-                    <p>No outdoor space? We'll find and reserve a suitable venue — rooftop in Eixample, masía in Penedès, beach plot in Castelldefels. Cost is added to the quote.</p>
+                    <h3><span data-lang="en">A venue we book for you</span><span data-lang="es">Un lugar que reservamos</span></h3>
+                    <p>
+                        <span data-lang="en">No outdoor space? We'll find and reserve a suitable venue — rooftop in Eixample, masía in Penedès, beach plot in Castelldefels. Cost added to the quote.</span>
+                        <span data-lang="es">¿No tenés espacio al aire libre? Lo buscamos y reservamos — azotea en Eixample, masía en Penedès, terreno en Castelldefels. El costo se suma al presupuesto.</span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -106,30 +144,45 @@
     <section>
         <div class="container">
             <div class="section-head reveal" style="max-width: 820px;">
-                <span class="eyebrow">How booking works</span>
-                <h2>Four steps, no friction.</h2>
+                <span class="eyebrow"><span data-lang="en">How booking works</span><span data-lang="es">Cómo se reserva</span></span>
+                <h2>
+                    <span data-lang="en">Four steps, no friction.</span>
+                    <span data-lang="es">Cuatro pasos, sin vueltas.</span>
+                </h2>
             </div>
 
             <div class="feature-grid reveal">
                 <div class="feature tilt">
-                    <div class="feature-num">Step 1</div>
-                    <h3>You send the basics</h3>
-                    <p>Date, number of guests, where you're staying. A line about what you want — chill family lunch, anniversary, bachelor party.</p>
+                    <div class="feature-num"><span data-lang="en">Step 1</span><span data-lang="es">Paso 1</span></div>
+                    <h3><span data-lang="en">You send the basics</span><span data-lang="es">Mandás lo básico</span></h3>
+                    <p>
+                        <span data-lang="en">Date, number of guests, location. A line about what you want — chill family lunch, anniversary, bachelor party. <strong style="color: var(--gold);">Please get in touch at least 3 days before your event.</strong></span>
+                        <span data-lang="es">Fecha, cantidad de invitados, lugar. Una línea sobre lo que querés — almuerzo familiar tranquilo, aniversario, despedida. <strong style="color: var(--gold);">Avisanos con un mínimo de 3 días de anticipación.</strong></span>
+                    </p>
                 </div>
                 <div class="feature tilt">
-                    <div class="feature-num">Step 2</div>
-                    <h3>We send a quote</h3>
-                    <p>Within 24 hours. One per-person price, a suggested menu, and a venue plan if you need one. We adjust until it fits.</p>
+                    <div class="feature-num"><span data-lang="en">Step 2</span><span data-lang="es">Paso 2</span></div>
+                    <h3><span data-lang="en">We send a quote</span><span data-lang="es">Te mandamos presupuesto</span></h3>
+                    <p>
+                        <span data-lang="en">Within 24 hours. One per-person price, a suggested menu, and a venue plan if you need one. We adjust until it fits.</span>
+                        <span data-lang="es">En 24 horas. Un precio por persona, menú sugerido, y plan de lugar si lo necesitás. Ajustamos hasta que cierre.</span>
+                    </p>
                 </div>
                 <div class="feature tilt">
-                    <div class="feature-num">Step 3</div>
-                    <h3>You confirm with a deposit</h3>
-                    <p>30% to lock the date. Final balance the day of the event. We accept transfer, Bizum, cash or card.</p>
+                    <div class="feature-num"><span data-lang="en">Step 3</span><span data-lang="es">Paso 3</span></div>
+                    <h3><span data-lang="en">You confirm with a deposit</span><span data-lang="es">Confirmás con seña</span></h3>
+                    <p>
+                        <span data-lang="en">30% to lock the date. Final balance the day of the event. We accept transfer, Bizum, cash or card.</span>
+                        <span data-lang="es">30% para reservar la fecha. El resto el día del evento. Aceptamos transferencia, Bizum, efectivo o tarjeta.</span>
+                    </p>
                 </div>
                 <div class="feature tilt">
-                    <div class="feature-num">Step 4</div>
-                    <h3>We show up &amp; cook</h3>
-                    <p>You open the door. We do the rest. Your only job is to sit at the table.</p>
+                    <div class="feature-num"><span data-lang="en">Step 4</span><span data-lang="es">Paso 4</span></div>
+                    <h3><span data-lang="en">We show up &amp; cook</span><span data-lang="es">Llegamos y cocinamos</span></h3>
+                    <p>
+                        <span data-lang="en">You open the door. We do the rest. Your only job is to sit at the table.</span>
+                        <span data-lang="es">Vos abrís la puerta. Del resto nos encargamos. Tu único trabajo es sentarte a la mesa.</span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -139,34 +192,37 @@
     <section>
         <div class="container">
             <div class="section-head reveal">
-                <span class="eyebrow">Frequently asked</span>
-                <h2>Things travelers ask us.</h2>
+                <span class="eyebrow"><span data-lang="en">Frequently asked</span><span data-lang="es">Preguntas frecuentes</span></span>
+                <h2>
+                    <span data-lang="en">Things people ask us.</span>
+                    <span data-lang="es">Cosas que nos preguntan.</span>
+                </h2>
             </div>
 
             <ul class="spec-list reveal" style="list-style: none;">
                 <li>
-                    <span class="spec-name">How far in advance should we book?</span>
-                    <span class="spec-desc">Two weeks is comfortable. We can sometimes do 3–5 days, weather and availability permitting.</span>
+                    <span class="spec-name"><span data-lang="en">How far in advance should we book?</span><span data-lang="es">¿Con cuánta anticipación reservamos?</span></span>
+                    <span class="spec-desc"><span data-lang="en">Minimum 3 days before the event. Two weeks is comfortable, longer is even better — especially for weddings and groups over 20.</span><span data-lang="es">Mínimo 3 días antes del evento. Dos semanas es cómodo, más es todavía mejor — sobre todo para bodas y grupos de más de 20.</span></span>
                 </li>
                 <li>
-                    <span class="spec-name">Do you cater to vegetarians?</span>
-                    <span class="spec-desc">Yes — provoleta, grilled vegetables, mozzarella &amp; tomato, salads. Tell us how many in your party.</span>
+                    <span class="spec-name"><span data-lang="en">Do you cater to vegetarians?</span><span data-lang="es">¿Atienden a vegetarianos?</span></span>
+                    <span class="spec-desc"><span data-lang="en">Yes — grilled vegetables, vegetable skewers, fresh bread, sauces. Tell us how many in your party.</span><span data-lang="es">Sí — verduras a la parrilla, pinchos de verdura, pan fresco, salsas. Decinos cuántos son.</span></span>
                 </li>
                 <li>
-                    <span class="spec-name">Can we choose the cuts?</span>
-                    <span class="spec-desc">Absolutely. Tell us what you've tried, what you want to try, and we'll build the menu around it.</span>
+                    <span class="spec-name"><span data-lang="en">Can we choose the cuts?</span><span data-lang="es">¿Podemos elegir los cortes?</span></span>
+                    <span class="spec-desc"><span data-lang="en">Absolutely. Tell us what you've tried, what you want to try, and we'll build the menu around it.</span><span data-lang="es">Por supuesto. Contanos qué probaste, qué querés probar, y armamos el menú alrededor.</span></span>
                 </li>
                 <li>
-                    <span class="spec-name">What if it rains?</span>
-                    <span class="spec-desc">We reschedule at no charge with 24h notice, or move to a covered venue. Your deposit doesn't expire.</span>
+                    <span class="spec-name"><span data-lang="en">What if it rains?</span><span data-lang="es">¿Y si llueve?</span></span>
+                    <span class="spec-desc"><span data-lang="en">We reschedule at no charge with 24h notice, or move to a covered venue. Your deposit doesn't expire.</span><span data-lang="es">Reprogramamos sin cargo con 24h de aviso, o nos mudamos a un lugar techado. La seña no vence.</span></span>
                 </li>
                 <li>
-                    <span class="spec-name">Do you speak English?</span>
-                    <span class="spec-desc">Yes — fluent. We also speak Spanish and Italian. The whole experience runs in English by default.</span>
+                    <span class="spec-name"><span data-lang="en">Do you speak English?</span><span data-lang="es">¿Hablan inglés?</span></span>
+                    <span class="spec-desc"><span data-lang="en">Yes — fluent. We also speak Spanish and Italian.</span><span data-lang="es">Sí — fluido. También hablamos español e italiano.</span></span>
                 </li>
                 <li>
-                    <span class="spec-name">Is gratuity included?</span>
-                    <span class="spec-desc">No. Tipping is not customary in Spain. If you loved the experience, tell your friends.</span>
+                    <span class="spec-name"><span data-lang="en">Is gratuity included?</span><span data-lang="es">¿La propina está incluida?</span></span>
+                    <span class="spec-desc"><span data-lang="en">No. Tipping is not customary in Spain. If you loved the experience, tell your friends.</span><span data-lang="es">No. La propina no es habitual en España. Si te gustó, contale a tus amigos.</span></span>
                 </li>
             </ul>
         </div>
@@ -175,10 +231,16 @@
     <!-- CTA -->
     <section class="cta-banner">
         <div class="container reveal">
-            <span class="eyebrow center">Now you know how it works</span>
-            <h2>Let's pick a date.</h2>
-            <p class="lead">Tell us what you have in mind. We'll come back within 24 hours.</p>
-            <a href="book.html" class="btn btn-primary btn-large">Request a Quote</a>
+            <span class="eyebrow center"><span data-lang="en">Now you know how it works</span><span data-lang="es">Ya sabés cómo es</span></span>
+            <h2>
+                <span data-lang="en">Let's pick a date.</span>
+                <span data-lang="es">Elegimos una fecha.</span>
+            </h2>
+            <p class="lead">
+                <span data-lang="en">Tell us what you have in mind. We'll come back within 24 hours.</span>
+                <span data-lang="es">Contanos qué tenés en mente. Te respondemos en 24 horas.</span>
+            </p>
+            <a href="book.html" class="btn btn-primary btn-large"><span data-lang="en">Request a Quote</span><span data-lang="es">Pedir presupuesto</span></a>
         </div>
     </section>
 
@@ -188,19 +250,22 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h4>Los Hermanos Parrilleros</h4>
-                    <p>Authentic Argentine asado, brought to your terrace, garden, rooftop or rented venue anywhere in Barcelona.</p>
+                    <p>
+                        <span data-lang="en">Authentic Argentine asado, brought to your terrace, garden, rooftop or rented venue anywhere in Barcelona.</span>
+                        <span data-lang="es">Asado argentino auténtico, llevado a tu terraza, jardín, azotea o lugar reservado en cualquier punto de Barcelona.</span>
+                    </p>
                 </div>
                 <div class="footer-col">
-                    <h5>Explore</h5>
+                    <h5><span data-lang="en">Explore</span><span data-lang="es">Explorar</span></h5>
                     <ul>
-                        <li><a href="experience.html">The Experience</a></li>
-                        <li><a href="menu.html">Menu</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="experience.html"><span data-lang="en">The Experience</span><span data-lang="es">La Experiencia</span></a></li>
+                        <li><a href="menu.html"><span data-lang="en">Menu</span><span data-lang="es">Menú</span></a></li>
+                        <li><a href="events.html"><span data-lang="en">Events</span><span data-lang="es">Eventos</span></a></li>
+                        <li><a href="about.html"><span data-lang="en">About Us</span><span data-lang="es">Nosotros</span></a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h5>Contact</h5>
+                    <h5><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h5>
                     <ul>
                         <li><a href="https://wa.me/34652251002" target="_blank" rel="noopener">+34 652 25 10 02 · Bruno</a></li>
                         <li><a href="https://wa.me/34645720420" target="_blank" rel="noopener">+34 645 72 04 20 · Facundo</a></li>
@@ -209,19 +274,19 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h5>Service area</h5>
+                    <h5><span data-lang="en">Service area</span><span data-lang="es">Zona de servicio</span></h5>
                     <ul>
-                        <li>Barcelona city</li>
+                        <li><span data-lang="en">Barcelona city</span><span data-lang="es">Barcelona ciudad</span></li>
                         <li>Sitges &amp; Garraf</li>
-                        <li>Maresme coast</li>
+                        <li><span data-lang="en">Maresme coast</span><span data-lang="es">Costa del Maresme</span></li>
                         <li>Penedès &amp; Empordà</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>© 2026 Los Hermanos Parrilleros · Barcelona, Spain</span>
+                <span>© 2026 Los Hermanos Parrilleros · Barcelona, <span data-lang="en">Spain</span><span data-lang="es">España</span></span>
                 <span class="credit">Hecha por <a href="https://vantia.digital" target="_blank" rel="noopener">Vantia Digital</a></span>
-                <span><a href="book.html">Book an Asado →</a></span>
+                <span><a href="book.html"><span data-lang="en">Book an Asado →</span><span data-lang="es">Reservar Asado →</span></a></span>
             </div>
         </div>
     </footer>

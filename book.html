@@ -14,20 +14,27 @@
 </head>
 <body>
 
+    <!-- LANGUAGE BAR -->
+    <div class="lang-bar" role="group" aria-label="Language">
+        <button class="lang-opt" data-set-lang="en" type="button">English</button>
+        <span class="sep" aria-hidden="true">·</span>
+        <button class="lang-opt" data-set-lang="es" type="button">Español</button>
+    </div>
+
     <nav class="site-nav">
         <div class="nav-inner">
             <a href="index.html" class="brand">
                 <span class="brand-mark">Los Hermanos Parrilleros</span>
-                <span class="brand-sub">Argentine asado · Barcelona</span>
+                <span class="brand-sub"><span data-lang="en">Argentine asado · Barcelona</span><span data-lang="es">Asado argentino · Barcelona</span></span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="experience.html">The Experience</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a></li>
+                <li><a href="experience.html"><span data-lang="en">The Experience</span><span data-lang="es">La Experiencia</span></a></li>
+                <li><a href="menu.html"><span data-lang="en">Menu</span><span data-lang="es">Menú</span></a></li>
+                <li><a href="events.html"><span data-lang="en">Events</span><span data-lang="es">Eventos</span></a></li>
+                <li><a href="about.html"><span data-lang="en">About</span><span data-lang="es">Nosotros</span></a></li>
             </ul>
-            <a href="book.html" class="nav-cta">Book an Asado</a>
+            <a href="book.html" class="nav-cta"><span data-lang="en">Book an Asado</span><span data-lang="es">Reservar Asado</span></a>
             <button class="menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
@@ -39,12 +46,17 @@
         <span class="deco-numeral tl" aria-hidden="true">B</span>
         <div class="container" style="position: relative; z-index: 1;">
             <div class="section-head reveal" style="max-width: 820px;">
-                <span class="eyebrow">Book an asado</span>
-                <h2 data-split>Tell us the basics. We'll send a quote.</h2>
+                <span class="eyebrow"><span data-lang="en">Book an asado</span><span data-lang="es">Reservar un asado</span></span>
+                <h2>
+                    <span data-lang="en">Tell us the basics. We'll send a quote.</span>
+                    <span data-lang="es">Contanos lo básico. Te mandamos presupuesto.</span>
+                </h2>
                 <p class="lead" style="margin-top: 28px;">
-                    No payment, no commitment until you confirm. The form opens a WhatsApp
-                    message pre-filled with your answers — or write to us directly using the
-                    contacts on the right.
+                    <span data-lang="en">No payment, no commitment until you confirm. The form opens a WhatsApp message pre-filled with your answers — or write to us directly using the contacts on the right.</span>
+                    <span data-lang="es">Sin pago, sin compromiso hasta que confirmes. El formulario abre un WhatsApp con tus respuestas — o escribinos directo a los contactos de la derecha.</span>
+                </p>
+                <p style="margin-top: 18px; color: var(--gold); font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;">
+                    <span data-lang="en">Please book at least 3 days in advance</span><span data-lang="es">Reservá con un mínimo de 3 días de anticipación</span>
                 </p>
             </div>
         </div>
@@ -59,67 +71,68 @@
                 <form id="booking-form" class="booking-form cut" data-phone="34652251002" autocomplete="on">
                     <div class="form-row">
                         <div class="field">
-                            <label for="name">Your name</label>
+                            <label for="name"><span data-lang="en">Your name</span><span data-lang="es">Tu nombre</span></label>
                             <input type="text" id="name" name="name" required placeholder="Jane Smith" />
                         </div>
                         <div class="field">
-                            <label for="email">Email</label>
+                            <label for="email"><span data-lang="en">Email</span><span data-lang="es">Email</span></label>
                             <input type="email" id="email" name="email" required placeholder="jane@example.com" />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="field">
-                            <label for="event_type">Type of event</label>
+                            <label for="event_type"><span data-lang="en">Type of event</span><span data-lang="es">Tipo de evento</span></label>
                             <select id="event_type" name="event_type" required>
-                                <option value="">Choose one…</option>
-                                <option value="Airbnb / vacation rental">Airbnb / vacation rental</option>
-                                <option value="Birthday">Birthday</option>
-                                <option value="Bachelor / bachelorette">Bachelor / bachelorette</option>
-                                <option value="Wedding">Wedding</option>
-                                <option value="Corporate retreat">Corporate retreat</option>
-                                <option value="Private dinner">Private dinner</option>
-                                <option value="Other">Other</option>
+                                <option value="" data-en="Choose one…" data-es="Elegí uno…">Choose one…</option>
+                                <option value="Home or rental" data-en="Home or rental" data-es="Casa o alquiler">Home or rental</option>
+                                <option value="Birthday" data-en="Birthday" data-es="Cumpleaños">Birthday</option>
+                                <option value="Bachelor / bachelorette" data-en="Bachelor / bachelorette" data-es="Despedida de soltero/a">Bachelor / bachelorette</option>
+                                <option value="Wedding" data-en="Wedding" data-es="Boda">Wedding</option>
+                                <option value="Corporate retreat" data-en="Corporate retreat" data-es="Evento de empresa">Corporate retreat</option>
+                                <option value="Private dinner" data-en="Private dinner" data-es="Cena privada">Private dinner</option>
+                                <option value="Other" data-en="Other" data-es="Otro">Other</option>
                             </select>
                         </div>
                         <div class="field">
-                            <label for="date">Preferred date</label>
+                            <label for="date"><span data-lang="en">Preferred date</span><span data-lang="es">Fecha preferida</span></label>
                             <input type="date" id="date" name="date" required />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="field">
-                            <label for="guests">Number of guests</label>
+                            <label for="guests"><span data-lang="en">Number of guests</span><span data-lang="es">Cantidad de personas</span></label>
                             <input type="number" id="guests" name="guests" min="2" max="100" required placeholder="e.g. 12" />
                         </div>
                         <div class="field">
-                            <label for="place">Where? (or "need venue")</label>
-                            <input type="text" id="place" name="place" required placeholder="Carrer de... / Sitges / need a venue" />
+                            <label for="place"><span data-lang="en">Location</span><span data-lang="es">Lugar</span></label>
+                            <input type="text" id="place" name="place" required data-en-placeholder='Address, area, or "need a venue"' data-es-placeholder='Dirección, zona, o "necesito lugar"' placeholder='Address, area, or "need a venue"' />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="field full">
-                            <label for="message">Anything we should know? (optional)</label>
-                            <textarea id="message" name="message" placeholder="Allergies, dietary needs, the vibe you're hoping for, special requests…"></textarea>
+                            <label for="message"><span data-lang="en">Anything we should know? (optional)</span><span data-lang="es">¿Algo que tengamos que saber? (opcional)</span></label>
+                            <textarea id="message" name="message" data-en-placeholder="Allergies, dietary needs, the vibe you're hoping for, special requests…" data-es-placeholder="Alergias, restricciones, la vibra que querés, pedidos especiales…" placeholder="Allergies, dietary needs, the vibe you're hoping for, special requests…"></textarea>
                         </div>
                     </div>
 
                     <span class="magnet" style="display: block;">
                         <button type="submit" class="btn btn-primary btn-large form-submit sweep">
-                            Send via WhatsApp →
+                            <span data-lang="en">Send via WhatsApp →</span><span data-lang="es">Enviar por WhatsApp →</span>
                         </button>
                     </span>
 
                     <p style="margin-top: 18px; font-size: 0.82rem; color: var(--ink-mute); text-align: center;">
-                        Opens a WhatsApp chat with Bruno, pre-filled with your answers. You can edit before sending.
+                        <span data-lang="en">Opens a WhatsApp chat with Bruno, pre-filled with your answers. You can edit before sending.</span>
+                        <span data-lang="es">Abre un WhatsApp con Bruno, con tus respuestas ya escritas. Lo podés editar antes de enviar.</span>
                     </p>
                 </form>
 
                 <!-- DIRECT CONTACT -->
                 <aside class="contact-card">
-                    <h3>Prefer to write directly?</h3>
+                    <h3><span data-lang="en">Prefer to write directly?</span><span data-lang="es">¿Preferís escribir directo?</span></h3>
 
                     <div class="contact-person">
                         <div class="name">Bruno Goette</div>
@@ -146,8 +159,9 @@
                     </div>
 
                     <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--ink-soft); line-height: 1.7;">
-                        <strong style="color: var(--gold); font-weight: 500;">Response time:</strong>
-                        Within 24 hours, usually faster. We reply in English and Spanish.
+                        <strong style="color: var(--gold); font-weight: 500;"><span data-lang="en">Response time:</span><span data-lang="es">Respuesta:</span></strong>
+                        <span data-lang="en">Within 24 hours, usually faster. We reply in English and Spanish. Please book at least 3 days before the event.</span>
+                        <span data-lang="es">En menos de 24 horas, normalmente más rápido. Respondemos en inglés y español. Reservá con un mínimo de 3 días de anticipación.</span>
                     </div>
                 </aside>
 
@@ -159,30 +173,45 @@
     <section class="stat-strip">
         <div class="container">
             <div class="section-head center reveal">
-                <span class="eyebrow center">After you send</span>
-                <h2>What happens next.</h2>
+                <span class="eyebrow center"><span data-lang="en">After you send</span><span data-lang="es">Después de enviar</span></span>
+                <h2>
+                    <span data-lang="en">What happens next.</span>
+                    <span data-lang="es">Qué pasa después.</span>
+                </h2>
             </div>
 
             <div class="feature-grid reveal">
                 <div class="feature tilt">
                     <div class="feature-num">01</div>
-                    <h3>Within 24 hours</h3>
-                    <p>We reply with a per-person quote, a suggested menu, and a venue plan if you asked for one.</p>
+                    <h3><span data-lang="en">Within 24 hours</span><span data-lang="es">En 24 horas</span></h3>
+                    <p>
+                        <span data-lang="en">We reply with a per-person quote, a suggested menu, and a venue plan if you asked for one.</span>
+                        <span data-lang="es">Te respondemos con un precio por persona, menú sugerido, y plan de lugar si lo pediste.</span>
+                    </p>
                 </div>
                 <div class="feature tilt">
                     <div class="feature-num">02</div>
-                    <h3>We refine together</h3>
-                    <p>Swap cuts, adjust the headcount, change the date. No commitment until both sides are happy.</p>
+                    <h3><span data-lang="en">We refine together</span><span data-lang="es">Lo afinamos juntos</span></h3>
+                    <p>
+                        <span data-lang="en">Swap cuts, adjust the headcount, change the date. No commitment until both sides are happy.</span>
+                        <span data-lang="es">Cambiamos cortes, ajustamos cantidad, modificamos fecha. Sin compromiso hasta que los dos estemos contentos.</span>
+                    </p>
                 </div>
                 <div class="feature tilt">
                     <div class="feature-num">03</div>
-                    <h3>30% deposit</h3>
-                    <p>Lock the date with a transfer, Bizum or card payment. Balance settled the day of the event.</p>
+                    <h3><span data-lang="en">30% deposit</span><span data-lang="es">30% de seña</span></h3>
+                    <p>
+                        <span data-lang="en">Lock the date with a transfer, Bizum or card payment. Balance settled the day of the event.</span>
+                        <span data-lang="es">Reservás la fecha con transferencia, Bizum o tarjeta. El resto se paga el día del evento.</span>
+                    </p>
                 </div>
                 <div class="feature tilt">
                     <div class="feature-num">04</div>
-                    <h3>We show up</h3>
-                    <p>90 minutes before the start. You open the door. We do the rest.</p>
+                    <h3><span data-lang="en">We show up</span><span data-lang="es">Llegamos nosotros</span></h3>
+                    <p>
+                        <span data-lang="en">90 minutes before the start. You open the door. We do the rest.</span>
+                        <span data-lang="es">90 minutos antes. Vos abrís la puerta. Del resto nos encargamos.</span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -194,19 +223,22 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h4>Los Hermanos Parrilleros</h4>
-                    <p>Authentic Argentine asado, brought to your terrace, garden, rooftop or rented venue anywhere in Barcelona.</p>
+                    <p>
+                        <span data-lang="en">Authentic Argentine asado, brought to your terrace, garden, rooftop or rented venue anywhere in Barcelona.</span>
+                        <span data-lang="es">Asado argentino auténtico, llevado a tu terraza, jardín, azotea o lugar reservado en cualquier punto de Barcelona.</span>
+                    </p>
                 </div>
                 <div class="footer-col">
-                    <h5>Explore</h5>
+                    <h5><span data-lang="en">Explore</span><span data-lang="es">Explorar</span></h5>
                     <ul>
-                        <li><a href="experience.html">The Experience</a></li>
-                        <li><a href="menu.html">Menu</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="experience.html"><span data-lang="en">The Experience</span><span data-lang="es">La Experiencia</span></a></li>
+                        <li><a href="menu.html"><span data-lang="en">Menu</span><span data-lang="es">Menú</span></a></li>
+                        <li><a href="events.html"><span data-lang="en">Events</span><span data-lang="es">Eventos</span></a></li>
+                        <li><a href="about.html"><span data-lang="en">About Us</span><span data-lang="es">Nosotros</span></a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h5>Contact</h5>
+                    <h5><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h5>
                     <ul>
                         <li><a href="https://wa.me/34652251002" target="_blank" rel="noopener">+34 652 25 10 02 · Bruno</a></li>
                         <li><a href="https://wa.me/34645720420" target="_blank" rel="noopener">+34 645 72 04 20 · Facundo</a></li>
@@ -215,19 +247,19 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h5>Service area</h5>
+                    <h5><span data-lang="en">Service area</span><span data-lang="es">Zona de servicio</span></h5>
                     <ul>
-                        <li>Barcelona city</li>
+                        <li><span data-lang="en">Barcelona city</span><span data-lang="es">Barcelona ciudad</span></li>
                         <li>Sitges &amp; Garraf</li>
-                        <li>Maresme coast</li>
+                        <li><span data-lang="en">Maresme coast</span><span data-lang="es">Costa del Maresme</span></li>
                         <li>Penedès &amp; Empordà</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>© 2026 Los Hermanos Parrilleros · Barcelona, Spain</span>
+                <span>© 2026 Los Hermanos Parrilleros · Barcelona, <span data-lang="en">Spain</span><span data-lang="es">España</span></span>
                 <span class="credit">Hecha por <a href="https://vantia.digital" target="_blank" rel="noopener">Vantia Digital</a></span>
-                <span><a href="index.html">← Back to Home</a></span>
+                <span><a href="index.html"><span data-lang="en">← Back to Home</span><span data-lang="es">← Volver al inicio</span></a></span>
             </div>
         </div>
     </footer>

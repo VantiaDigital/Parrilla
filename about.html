@@ -14,20 +14,27 @@
 </head>
 <body>
 
+    <!-- LANGUAGE BAR -->
+    <div class="lang-bar" role="group" aria-label="Language">
+        <button class="lang-opt" data-set-lang="en" type="button">English</button>
+        <span class="sep" aria-hidden="true">·</span>
+        <button class="lang-opt" data-set-lang="es" type="button">Español</button>
+    </div>
+
     <nav class="site-nav">
         <div class="nav-inner">
             <a href="index.html" class="brand">
                 <span class="brand-mark">Los Hermanos Parrilleros</span>
-                <span class="brand-sub">Argentine asado · Barcelona</span>
+                <span class="brand-sub"><span data-lang="en">Argentine asado · Barcelona</span><span data-lang="es">Asado argentino · Barcelona</span></span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="experience.html">The Experience</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a></li>
+                <li><a href="experience.html"><span data-lang="en">The Experience</span><span data-lang="es">La Experiencia</span></a></li>
+                <li><a href="menu.html"><span data-lang="en">Menu</span><span data-lang="es">Menú</span></a></li>
+                <li><a href="events.html"><span data-lang="en">Events</span><span data-lang="es">Eventos</span></a></li>
+                <li><a href="about.html"><span data-lang="en">About</span><span data-lang="es">Nosotros</span></a></li>
             </ul>
-            <a href="book.html" class="nav-cta">Book an Asado</a>
+            <a href="book.html" class="nav-cta"><span data-lang="en">Book an Asado</span><span data-lang="es">Reservar Asado</span></a>
             <button class="menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
@@ -39,13 +46,14 @@
         <span class="deco-numeral tl" aria-hidden="true">A</span>
         <div class="container" style="position: relative; z-index: 1;">
             <div class="section-head reveal" style="max-width: 820px;">
-                <span class="eyebrow">About us</span>
-                <h2 data-split>Two brothers. One grill.</h2>
+                <span class="eyebrow"><span data-lang="en">About us</span><span data-lang="es">Nosotros</span></span>
+                <h2>
+                    <span data-lang="en">Two brothers. One grill.</span>
+                    <span data-lang="es">Dos hermanos. Una parrilla.</span>
+                </h2>
                 <p class="lead" style="margin-top: 28px;">
-                    We're Bruno and Facundo Goette. We grew up in Argentina watching our father
-                    light a parrilla every Sunday, the way most kids watch cartoons. We moved
-                    to Barcelona to study and stayed because the city felt good — but the
-                    Sunday asado came with us.
+                    <span data-lang="en">We're Bruno and Facundo Goette. We grew up in Argentina watching our father light a parrilla every Sunday, the way most kids watch cartoons. We moved to Barcelona to study and stayed because the city felt good — but the Sunday asado came with us.</span>
+                    <span data-lang="es">Somos Bruno y Facundo Goette. Crecimos en Argentina viendo a nuestro viejo encender la parrilla todos los domingos, como otros chicos miran dibujitos. Vinimos a Barcelona a estudiar y nos quedamos porque la ciudad nos cerró — pero el asado del domingo se vino con nosotros.</span>
                 </p>
             </div>
         </div>
@@ -57,31 +65,26 @@
         <div class="container" style="position: relative; z-index: 1;">
             <div class="bro-manifesto reveal">
                 <div class="stamp-col">
-                    <div class="stamp">Authentic<br />Argentine<br />Asado</div>
-                    <span class="eyebrow">The origin</span>
+                    <div class="stamp"><span data-lang="en">Authentic<br />Argentine<br />Asado</span><span data-lang="es">Asado<br />argentino<br />auténtico</span></div>
+                    <span class="eyebrow"><span data-lang="en">The origin</span><span data-lang="es">El origen</span></span>
                     <div class="signature">Bruno &amp; Facundo</div>
                 </div>
                 <div>
                     <h2 style="font-size: clamp(2.4rem, 5vw, 4rem); margin-bottom: 36px;">
-                        Sunday lunch,<br /><em style="color: var(--gold); font-style: italic;">turned into a business.</em>
+                        <span data-lang="en">Sunday lunch,<br /><em style="color: var(--gold); font-style: italic;">turned into a business.</em></span>
+                        <span data-lang="es">El almuerzo del domingo,<br /><em style="color: var(--gold); font-style: italic;">convertido en trabajo.</em></span>
                     </h2>
                     <p style="color: var(--ink-soft); font-size: 1.08rem; margin-bottom: 22px;">
-                        For the first two years in Barcelona we cooked for friends — Argentines
-                        missing home, Spanish neighbors curious about the smoke coming off the
-                        terrace, Erasmus kids who had never seen a chorizo bitten right off the
-                        grill.
+                        <span data-lang="en">For the first two years in Barcelona we cooked for friends — Argentines missing home, Spanish neighbours curious about the smoke coming off the terrace, Erasmus kids who had never seen a chorizo bitten right off the grill.</span>
+                        <span data-lang="es">Los primeros dos años en Barcelona cocinamos para amigos — argentinos extrañando, vecinos españoles curiosos por el humo en la terraza, chicos de Erasmus que nunca habían visto un chorizo recién salido de la parrilla.</span>
                     </p>
                     <p style="color: var(--ink-soft); font-size: 1.08rem; margin-bottom: 22px;">
-                        Word kept spreading. People started asking us to cook for birthdays.
-                        Then a wedding. Then a couple of summer-rental groups from the US who
-                        wanted <em style="color: var(--gold);">"the local thing, but real"</em>. We bought a proper portable
-                        parrilla, then a second one, and named ourselves what our friends
-                        already called us: <strong style="color: var(--ink); font-weight: 500;">Los Hermanos Parrilleros</strong>.
+                        <span data-lang="en">Word kept spreading. People started asking us to cook for birthdays. Then a wedding. Then a few groups who wanted <em style="color: var(--gold);">"the local thing, but real"</em>. We bought a proper portable parrilla, then a second one, and named ourselves what our friends already called us: <strong style="color: var(--ink); font-weight: 500;">Los Hermanos Parrilleros</strong>.</span>
+                        <span data-lang="es">La cosa se fue corriendo. Nos empezaron a pedir cumpleaños. Después una boda. Después algunos grupos que querían <em style="color: var(--gold);">"lo local, pero de verdad"</em>. Compramos una parrilla portátil en serio, después otra, y nos pusimos el nombre con el que ya nos llamaban los amigos: <strong style="color: var(--ink); font-weight: 500;">Los Hermanos Parrilleros</strong>.</span>
                     </p>
                     <p style="color: var(--ink-soft); font-size: 1.08rem;">
-                        Today we cook all over Barcelona and the Catalan coast. The job hasn't
-                        changed much. We arrive, we light the fire, we feed the table, we
-                        leave it clean.
+                        <span data-lang="en">Today we cook all over Barcelona and the Catalan coast. The job hasn't changed much. We arrive, we light the fire, we feed the table, we leave it clean.</span>
+                        <span data-lang="es">Hoy cocinamos por toda Barcelona y la costa catalana. El laburo no cambió tanto. Llegamos, prendemos el fuego, alimentamos a la mesa, dejamos todo limpio.</span>
                     </p>
                 </div>
             </div>
@@ -105,31 +108,40 @@
     <section>
         <div class="container">
             <div class="section-head center reveal">
-                <span class="eyebrow center">The team</span>
-                <h2>Who's at the grill.</h2>
+                <span class="eyebrow center"><span data-lang="en">The team</span><span data-lang="es">El equipo</span></span>
+                <h2>
+                    <span data-lang="en">Who's at the grill.</span>
+                    <span data-lang="es">Quién está en la parrilla.</span>
+                </h2>
             </div>
 
             <div class="event-grid reveal">
                 <div class="event-card tilt">
-                    <span class="eyebrow">Older brother</span>
+                    <span class="eyebrow"><span data-lang="en">Asador</span><span data-lang="es">Asador</span></span>
                     <h3>Bruno Goette</h3>
-                    <p>Runs the fire and the timing. Grew up watching their father work the parrilla in Rosario. Trained in the kitchen before the kitchen trained him.</p>
+                    <p>
+                        <span data-lang="en">Runs the fire and the timing. Grew up watching their father work the parrilla every Sunday. Trained in the kitchen before the kitchen trained him.</span>
+                        <span data-lang="es">Maneja el fuego y los tiempos. Se crió mirando a su viejo en la parrilla todos los domingos. Aprendió en la cocina antes de que la cocina le enseñara.</span>
+                    </p>
                     <ul>
-                        <li>Lead asador</li>
-                        <li>Menu &amp; cut selection</li>
-                        <li>Bilingual: English / Spanish</li>
+                        <li><span data-lang="en">Lead asador</span><span data-lang="es">Asador principal</span></li>
+                        <li><span data-lang="en">Menu &amp; cut selection</span><span data-lang="es">Menú y selección de cortes</span></li>
+                        <li><span data-lang="en">Bilingual: English / Spanish</span><span data-lang="es">Bilingüe: inglés / español</span></li>
                         <li><a href="https://wa.me/34652251002" target="_blank" rel="noopener">+34 652 25 10 02</a></li>
                         <li><a href="mailto:brunogoette2002@gmail.com">brunogoette2002@gmail.com</a></li>
                     </ul>
                 </div>
                 <div class="event-card tilt">
-                    <span class="eyebrow">Younger brother</span>
+                    <span class="eyebrow"><span data-lang="en">Hospitality</span><span data-lang="es">Hospitalidad</span></span>
                     <h3>Facundo Goette</h3>
-                    <p>Handles logistics, drinks pairing and the front of the table. The one you'll exchange messages with while planning, and who keeps the wine flowing on the day.</p>
+                    <p>
+                        <span data-lang="en">Handles logistics, drinks pairing and the front of the table. The one you'll exchange messages with while planning, and who keeps the drinks flowing on the day.</span>
+                        <span data-lang="es">Se ocupa de la logística, las bebidas y la atención a la mesa. Con él vas a chatear mientras organizamos, y es el que mantiene el vino fluyendo el día del evento.</span>
+                    </p>
                     <ul>
-                        <li>Hospitality &amp; service</li>
-                        <li>Drinks pairing &amp; sommelier</li>
-                        <li>Bilingual: English / Spanish</li>
+                        <li><span data-lang="en">Hospitality &amp; service</span><span data-lang="es">Hospitalidad y servicio</span></li>
+                        <li><span data-lang="en">Drinks pairing &amp; sommelier</span><span data-lang="es">Bebidas y sommelier</span></li>
+                        <li><span data-lang="en">Bilingual: English / Spanish</span><span data-lang="es">Bilingüe: inglés / español</span></li>
                         <li><a href="https://wa.me/34645720420" target="_blank" rel="noopener">+34 645 72 04 20</a></li>
                         <li><a href="mailto:facugoette8@gmail.com">facugoette8@gmail.com</a></li>
                     </ul>
@@ -142,29 +154,44 @@
     <section class="stat-strip">
         <div class="container">
             <div class="section-head center reveal">
-                <span class="eyebrow center">How we work</span>
-                <h2>The rules we cook by.</h2>
+                <span class="eyebrow center"><span data-lang="en">How we work</span><span data-lang="es">Cómo trabajamos</span></span>
+                <h2>
+                    <span data-lang="en">The rules we cook by.</span>
+                    <span data-lang="es">Las reglas con las que cocinamos.</span>
+                </h2>
             </div>
             <div class="feature-grid reveal">
                 <div class="feature">
                     <div class="feature-num">I</div>
-                    <h3>Real fire</h3>
-                    <p>Charcoal, never gas. Embers, not flame. Some cuts cook in 8 minutes, others in three hours. We respect the difference.</p>
+                    <h3><span data-lang="en">Real fire</span><span data-lang="es">Fuego de verdad</span></h3>
+                    <p>
+                        <span data-lang="en">Charcoal, never gas. Embers, not flame. Some cuts cook in 8 minutes, others in three hours. We respect the difference.</span>
+                        <span data-lang="es">Carbón, nunca gas. Brasas, no llamas. Algunos cortes salen en 8 minutos, otros en tres horas. Respetamos la diferencia.</span>
+                    </p>
                 </div>
                 <div class="feature">
                     <div class="feature-num">II</div>
-                    <h3>Real meat</h3>
-                    <p>We source from a single butcher in Mercabarna who supplies Argentine restaurants in the city. Dry-aged where it matters. No shortcuts.</p>
+                    <h3><span data-lang="en">Real meat</span><span data-lang="es">Carne de verdad</span></h3>
+                    <p>
+                        <span data-lang="en">We source from a single butcher in Mercabarna who supplies Argentine restaurants in the city. Dry-aged where it matters. No shortcuts.</span>
+                        <span data-lang="es">Trabajamos con un único carnicero en Mercabarna que provee a los restaurantes argentinos de la ciudad. Madurada en seco donde corresponde. Sin atajos.</span>
+                    </p>
                 </div>
                 <div class="feature">
                     <div class="feature-num">III</div>
-                    <h3>Hosting, not catering</h3>
-                    <p>We don't show up in branded vans and disappear. We sit with the table when the meat is on, explain the cuts, pour the wine. It's part of the experience.</p>
+                    <h3><span data-lang="en">Hosting, not catering</span><span data-lang="es">Anfitriones, no catering</span></h3>
+                    <p>
+                        <span data-lang="en">We don't show up in branded vans and disappear. We sit with the table when the meat is on, explain the cuts, share a drink. It's part of the experience.</span>
+                        <span data-lang="es">No aparecemos con una camioneta con logo y desaparecemos. Nos sentamos a la mesa cuando empieza la carne, explicamos los cortes, compartimos un trago. Es parte de la experiencia.</span>
+                    </p>
                 </div>
                 <div class="feature">
                     <div class="feature-num">IV</div>
-                    <h3>Leave it cleaner</h3>
-                    <p>You should not be able to tell we were there — except for the dulce de leche in the fridge.</p>
+                    <h3><span data-lang="en">Leave it cleaner</span><span data-lang="es">Dejar todo limpio</span></h3>
+                    <p>
+                        <span data-lang="en">You should not be able to tell we were there — except for the dulce de leche in the fridge.</span>
+                        <span data-lang="es">No tendrías que notar que estuvimos — salvo por el dulce de leche que queda en la heladera.</span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -175,8 +202,8 @@
         <span class="quote-glyph" aria-hidden="true">"</span>
         <div class="container reveal">
             <blockquote>
-                We're not a restaurant that comes to your house.<br />
-                We're the Sunday lunch you wish your friends in Argentina had cooked for you.
+                <span data-lang="en">We're not a restaurant that comes to your house.<br />We're the Sunday lunch you wish your friends in Argentina had cooked for you.</span>
+                <span data-lang="es">No somos un restaurante que va a tu casa.<br />Somos el almuerzo del domingo que te gustaría que tus amigos en Argentina te hicieran.</span>
             </blockquote>
             <div class="quote-attribution">— Bruno &amp; Facundo</div>
         </div>
@@ -185,10 +212,16 @@
     <!-- CTA -->
     <section class="cta-banner">
         <div class="container reveal">
-            <span class="eyebrow center">Come meet us</span>
-            <h2>Let's set a date.</h2>
-            <p class="lead">Send the basics — we'll come back with a quote within 24 hours.</p>
-            <a href="book.html" class="btn btn-primary btn-large">Book an Asado</a>
+            <span class="eyebrow center"><span data-lang="en">Come meet us</span><span data-lang="es">Veámonos</span></span>
+            <h2>
+                <span data-lang="en">Let's set a date.</span>
+                <span data-lang="es">Pongamos fecha.</span>
+            </h2>
+            <p class="lead">
+                <span data-lang="en">Send the basics — we'll come back with a quote within 24 hours.</span>
+                <span data-lang="es">Mandanos lo básico — te respondemos con presupuesto en 24 horas.</span>
+            </p>
+            <a href="book.html" class="btn btn-primary btn-large"><span data-lang="en">Book an Asado</span><span data-lang="es">Reservar Asado</span></a>
         </div>
     </section>
 
@@ -198,19 +231,22 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h4>Los Hermanos Parrilleros</h4>
-                    <p>Authentic Argentine asado, brought to your terrace, garden, rooftop or rented venue anywhere in Barcelona.</p>
+                    <p>
+                        <span data-lang="en">Authentic Argentine asado, brought to your terrace, garden, rooftop or rented venue anywhere in Barcelona.</span>
+                        <span data-lang="es">Asado argentino auténtico, llevado a tu terraza, jardín, azotea o lugar reservado en cualquier punto de Barcelona.</span>
+                    </p>
                 </div>
                 <div class="footer-col">
-                    <h5>Explore</h5>
+                    <h5><span data-lang="en">Explore</span><span data-lang="es">Explorar</span></h5>
                     <ul>
-                        <li><a href="experience.html">The Experience</a></li>
-                        <li><a href="menu.html">Menu</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="experience.html"><span data-lang="en">The Experience</span><span data-lang="es">La Experiencia</span></a></li>
+                        <li><a href="menu.html"><span data-lang="en">Menu</span><span data-lang="es">Menú</span></a></li>
+                        <li><a href="events.html"><span data-lang="en">Events</span><span data-lang="es">Eventos</span></a></li>
+                        <li><a href="about.html"><span data-lang="en">About Us</span><span data-lang="es">Nosotros</span></a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h5>Contact</h5>
+                    <h5><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h5>
                     <ul>
                         <li><a href="https://wa.me/34652251002" target="_blank" rel="noopener">+34 652 25 10 02 · Bruno</a></li>
                         <li><a href="https://wa.me/34645720420" target="_blank" rel="noopener">+34 645 72 04 20 · Facundo</a></li>
@@ -219,19 +255,19 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h5>Service area</h5>
+                    <h5><span data-lang="en">Service area</span><span data-lang="es">Zona de servicio</span></h5>
                     <ul>
-                        <li>Barcelona city</li>
+                        <li><span data-lang="en">Barcelona city</span><span data-lang="es">Barcelona ciudad</span></li>
                         <li>Sitges &amp; Garraf</li>
-                        <li>Maresme coast</li>
+                        <li><span data-lang="en">Maresme coast</span><span data-lang="es">Costa del Maresme</span></li>
                         <li>Penedès &amp; Empordà</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>© 2026 Los Hermanos Parrilleros · Barcelona, Spain</span>
+                <span>© 2026 Los Hermanos Parrilleros · Barcelona, <span data-lang="en">Spain</span><span data-lang="es">España</span></span>
                 <span class="credit">Hecha por <a href="https://vantia.digital" target="_blank" rel="noopener">Vantia Digital</a></span>
-                <span><a href="book.html">Book an Asado →</a></span>
+                <span><a href="book.html"><span data-lang="en">Book an Asado →</span><span data-lang="es">Reservar Asado →</span></a></span>
             </div>
         </div>
     </footer>

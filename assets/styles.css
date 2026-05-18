@@ -1833,60 +1833,74 @@ section { padding: 110px 0; }
     .steak-svg { width: 170px; height: 110px; }
 }
 
-/* ---------- Heat meter (menu item hover) ---------- */
-.menu-item {
-    position: relative;
-    cursor: default;
-}
-.menu-item .heat-meter {
-    position: absolute;
-    top: 0;
-    right: 100%;
-    transform: translate(-12px, 0);
-    width: 36px;
-    background: var(--bg-soft);
-    border: 1px solid var(--gold);
-    border-radius: 999px;
-    padding: 8px 0 10px;
+/* ==========================================================
+   I18N — EN / ES language toggle
+   ========================================================== */
+
+/* Default state: hide the inactive language. Both versions live in DOM. */
+html[lang="en"] [data-lang="es"],
+html[lang="es"] [data-lang="en"] { display: none !important; }
+
+/* Slim lang bar above the nav — fixed so it's always reachable */
+.lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 110;
+    background: rgba(5, 4, 3, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
     display: flex;
-    flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
-    gap: 6px;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.25s ease, transform 0.3s cubic-bezier(.2,.9,.2,1), visibility 0.25s;
-    pointer-events: none;
-    z-index: 5;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    gap: 14px;
+    padding: 6px 32px;
+    font-family: var(--sans);
+    height: 26px;
 }
-.menu-item:hover .heat-meter {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(-12px, -4px);
-}
-.heat-bar {
-    width: 6px;
-    height: 60px;
-    background: linear-gradient(180deg, var(--ember) 0%, var(--gold) 60%, var(--ink-mute) 100%);
-    border-radius: 4px;
+.lang-bar .lang-opt {
+    background: none;
+    border: 0;
+    color: var(--ink-mute);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 4px 2px;
+    transition: color 0.2s ease;
     position: relative;
-    overflow: hidden;
 }
-.heat-bar::after {
+.lang-bar .lang-opt::after {
     content: '';
     position: absolute;
-    inset: 0;
-    background: var(--bg-soft);
-    transform-origin: bottom;
-    transform: scaleY(var(--inv, 0.5));
-    transition: transform 0.4s ease;
+    left: 2px; right: 2px;
+    bottom: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.25s cubic-bezier(.2,.9,.2,1);
 }
-.heat-temp {
-    font-family: var(--sans);
-    font-size: 0.62rem;
-    font-weight: 600;
+.lang-bar .lang-opt:hover { color: var(--ink-soft); }
+.lang-bar .lang-opt.active {
     color: var(--gold);
-    letter-spacing: 0.05em;
+}
+.lang-bar .lang-opt.active::after { transform: scaleX(1); }
+.lang-bar .sep {
+    color: var(--ink-mute);
+    opacity: 0.4;
+    font-size: 0.7rem;
+}
+
+/* The fixed-nav offset must include the lang bar height (~26px) */
+.site-nav { top: 26px; }
+.nav-spacer { height: calc(var(--nav-h) + 26px); }
+
+@media (max-width: 720px) {
+    .lang-bar { padding: 5px 16px; gap: 10px; }
+    .lang-bar .lang-opt { font-size: 0.62rem; letter-spacing: 0.18em; }
+    .site-nav { top: 24px; }
+    .nav-spacer { height: calc(var(--nav-h) + 24px); }
 }
 
 /* ---------- Doneness color states ---------- */

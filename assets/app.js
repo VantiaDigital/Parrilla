@@ -5,6 +5,42 @@
 
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // ---------- Language toggle (EN / ES) ----------
+    const LANG_KEY = 'lhp-lang';
+    const supported = ['en', 'es'];
+    function applyLang(lang) {
+        if (supported.indexOf(lang) === -1) lang = 'en';
+        document.documentElement.lang = lang;
+        try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* ignore */ }
+        document.querySelectorAll('.lang-bar .lang-opt').forEach(function (btn) {
+            btn.classList.toggle('active', btn.dataset.setLang === lang);
+            btn.setAttribute('aria-pressed', btn.dataset.setLang === lang ? 'true' : 'false');
+        });
+        // Swap input/textarea placeholders that have language data-attributes
+        document.querySelectorAll('[data-en-placeholder]').forEach(function (el) {
+            const p = el.getAttribute('data-' + lang + '-placeholder');
+            if (p != null) el.setAttribute('placeholder', p);
+        });
+        // Swap <option> labels with data-en/data-es
+        document.querySelectorAll('option[data-en]').forEach(function (opt) {
+            const t = opt.getAttribute('data-' + lang);
+            if (t != null) opt.textContent = t;
+        });
+    }
+    // pick initial: localStorage > <html lang> > browser > 'en'
+    let initial = 'en';
+    try {
+        const saved = localStorage.getItem(LANG_KEY);
+        if (saved) initial = saved;
+        else if ((navigator.language || '').toLowerCase().startsWith('es')) initial = 'es';
+    } catch (e) { /* ignore */ }
+    applyLang(initial);
+    document.querySelectorAll('.lang-bar .lang-opt').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            applyLang(btn.dataset.setLang);
+        });
+    });
+
     // ---------- Mobile menu toggle ----------
     const toggle = document.querySelector('.menu-toggle');
     const links = document.querySelector('.nav-links');
@@ -191,18 +227,23 @@
             const message = (data.get('message') || '').toString().trim();
 
             const lines = [
-                'Hi! I would like to book an Argentine asado:',
-                '',
-                'Name: ' + name,
-                'Email: ' + email,
-                'Event: ' + eventType,
-                'Date: ' + date,
-                'Guests: ' + guests,
-                'Location: ' + place,
                 ''
             ];
+            const isEs = document.documentElement.lang === 'es';
+            const labels = isEs
+                ? { intro: '¡Hola! Quiero reservar un asado argentino:', name: 'Nombre', email: 'Email', event: 'Evento', date: 'Fecha', guests: 'Personas', place: 'Lugar', notes: 'Notas' }
+                : { intro: 'Hi! I would like to book an Argentine asado:', name: 'Name', email: 'Email', event: 'Event', date: 'Date', guests: 'Guests', place: 'Location', notes: 'Notes' };
+            lines.length = 0;
+            lines.push(labels.intro, '',
+                labels.name + ': ' + name,
+                labels.email + ': ' + email,
+                labels.event + ': ' + eventType,
+                labels.date + ': ' + date,
+                labels.guests + ': ' + guests,
+                labels.place + ': ' + place,
+                '');
             if (message) {
-                lines.push('Notes:');
+                lines.push(labels.notes + ':');
                 lines.push(message);
             }
 
@@ -373,13 +414,22 @@
         const readout = dn.querySelector('.doneness-readout');
         const labels = dn.querySelectorAll('.doneness-labels span');
 
-        const stages = [
-            { name: 'Raw',          desc: 'No, gracias.' },
-            { name: 'Jugoso · Rare', desc: 'How we usually serve entraña.' },
-            { name: 'A punto · Medium-rare', desc: 'House default. The cuts shine here.' },
-            { name: 'Cocido · Medium', desc: 'Sure, we can do that.' },
-            { name: 'Bien cocido · Well done', desc: 'Bruno will sigh, but he\'ll do it.' }
-        ];
+        const stages = {
+            en: [
+                { name: 'Raw',          desc: 'No, thanks.' },
+                { name: 'Rare',         desc: 'How we usually serve entraña.' },
+                { name: 'Medium-rare',  desc: 'House default. The cuts shine here.' },
+                { name: 'Medium',       desc: 'Sure, we can do that.' },
+                { name: 'Well done',    desc: 'Bruno will sigh, but he\'ll do it.' }
+            ],
+            es: [
+                { name: 'Crudo',        desc: 'No, gracias.' },
+                { name: 'Jugoso',       desc: 'Como solemos servir la entraña.' },
+                { name: 'A punto',      desc: 'El default. Acá brillan los cortes.' },
+                { name: 'Cocido',       desc: 'Dale, lo hacemos.' },
+                { name: 'Bien cocido',  desc: 'Bruno se queja, pero lo hace.' }
+            ]
+        };
 
         function update() {
             const v = parseInt(input.value, 10);
@@ -392,25 +442,18 @@
             labels.forEach(function (l, i) {
                 l.classList.toggle('active', i === v);
             });
-            const s = stages[v];
+            const lang = document.documentElement.lang === 'es' ? 'es' : 'en';
+            const s = stages[lang][v];
             readout.innerHTML = '<strong>' + s.name + '</strong> — <em>' + s.desc + '</em>';
         }
         if (input) {
             input.addEventListener('input', update);
             update();
+            // re-render readout when language changes
+            document.querySelectorAll('.lang-bar .lang-opt').forEach(function (b) {
+                b.addEventListener('click', function () { setTimeout(update, 0); });
+            });
         }
     }
-
-    /* ---------- Heat meter on menu items ---------- */
-    document.querySelectorAll('.menu-item[data-temp]').forEach(function (item) {
-        const temp = parseInt(item.dataset.temp, 10); // 0..100 scale of heat
-        const tempC = item.dataset.tempLabel || (250 + Math.round(temp * 0.5) + '°C');
-        const meter = document.createElement('div');
-        meter.className = 'heat-meter';
-        meter.innerHTML =
-            '<div class="heat-bar" style="--inv: ' + (1 - temp / 100) + ';"></div>' +
-            '<div class="heat-temp">' + tempC + '</div>';
-        item.appendChild(meter);
-    });
 
 })();

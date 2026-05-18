@@ -14,20 +14,27 @@
 </head>
 <body>
 
+    <!-- LANGUAGE BAR -->
+    <div class="lang-bar" role="group" aria-label="Language">
+        <button class="lang-opt" data-set-lang="en" type="button">English</button>
+        <span class="sep" aria-hidden="true">·</span>
+        <button class="lang-opt" data-set-lang="es" type="button">Español</button>
+    </div>
+
     <nav class="site-nav">
         <div class="nav-inner">
             <a href="index.html" class="brand">
                 <span class="brand-mark">Los Hermanos Parrilleros</span>
-                <span class="brand-sub">Argentine asado · Barcelona</span>
+                <span class="brand-sub"><span data-lang="en">Argentine asado · Barcelona</span><span data-lang="es">Asado argentino · Barcelona</span></span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="experience.html">The Experience</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a></li>
+                <li><a href="experience.html"><span data-lang="en">The Experience</span><span data-lang="es">La Experiencia</span></a></li>
+                <li><a href="menu.html"><span data-lang="en">Menu</span><span data-lang="es">Menú</span></a></li>
+                <li><a href="events.html"><span data-lang="en">Events</span><span data-lang="es">Eventos</span></a></li>
+                <li><a href="about.html"><span data-lang="en">About</span><span data-lang="es">Nosotros</span></a></li>
             </ul>
-            <a href="book.html" class="nav-cta">Book an Asado</a>
+            <a href="book.html" class="nav-cta"><span data-lang="en">Book an Asado</span><span data-lang="es">Reservar Asado</span></a>
             <button class="menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
@@ -39,13 +46,14 @@
         <span class="deco-numeral tl" aria-hidden="true">M</span>
         <div class="container" style="position: relative; z-index: 1;">
             <div class="section-head reveal" style="max-width: 820px;">
-                <span class="eyebrow">The menu</span>
-                <h2 data-split>What an Argentine asado actually looks like.</h2>
+                <span class="eyebrow"><span data-lang="en">The menu</span><span data-lang="es">El menú</span></span>
+                <h2>
+                    <span data-lang="en">What an Argentine asado actually looks like.</span>
+                    <span data-lang="es">Cómo es un asado argentino de verdad.</span>
+                </h2>
                 <p class="lead" style="margin-top: 28px;">
-                    Below is the full repertoire. We don't serve all of it at every event —
-                    instead, we build your menu around the size of your group, what you've
-                    eaten before and what you want to discover. Three set menus are listed
-                    further down for reference.
+                    <span data-lang="en">Below is what we serve. Simple, real, the way an Argentine asado is meant to be. Tell us your group size and we'll build the right portions.</span>
+                    <span data-lang="es">Esto es lo que servimos. Simple, real, como tiene que ser un asado argentino. Decinos cuántos son y armamos las porciones justas.</span>
                 </p>
             </div>
         </div>
@@ -55,9 +63,15 @@
     <section style="padding: 20px 0 20px;">
         <div class="container">
             <div class="doneness reveal" role="group" aria-label="Choose your doneness">
-                <span class="eyebrow center">Choose your doneness</span>
-                <h3 style="margin-top: 12px;">Drag the slider — how do you like your meat?</h3>
-                <p class="lead">We'll cook every cut to the doneness your table prefers.</p>
+                <span class="eyebrow center"><span data-lang="en">Choose your doneness</span><span data-lang="es">Elegí el punto</span></span>
+                <h3 style="margin-top: 12px;">
+                    <span data-lang="en">Drag the slider — how do you like your meat?</span>
+                    <span data-lang="es">Movés el slider — ¿cómo te gusta la carne?</span>
+                </h3>
+                <p class="lead">
+                    <span data-lang="en">We'll cook every cut to the doneness your table prefers.</span>
+                    <span data-lang="es">Cocinamos cada corte al punto que prefieran en la mesa.</span>
+                </p>
 
                 <svg class="steak-svg" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg">
                     <!-- steak silhouette -->
@@ -76,11 +90,11 @@
                     <input type="range" class="doneness-input" min="0" max="4" step="1" value="2" aria-label="Doneness level" />
                 </div>
                 <div class="doneness-labels">
-                    <span><span class="full">Raw</span><span class="abbr">Raw</span></span>
-                    <span><span class="full">Rare</span><span class="abbr">Rare</span></span>
-                    <span><span class="full">Medium-rare</span><span class="abbr">M-rare</span></span>
-                    <span><span class="full">Medium</span><span class="abbr">Med</span></span>
-                    <span><span class="full">Well done</span><span class="abbr">Well</span></span>
+                    <span><span class="full"><span data-lang="en">Raw</span><span data-lang="es">Crudo</span></span><span class="abbr"><span data-lang="en">Raw</span><span data-lang="es">Crudo</span></span></span>
+                    <span><span class="full"><span data-lang="en">Rare</span><span data-lang="es">Jugoso</span></span><span class="abbr"><span data-lang="en">Rare</span><span data-lang="es">Jug.</span></span></span>
+                    <span><span class="full"><span data-lang="en">Medium-rare</span><span data-lang="es">A punto</span></span><span class="abbr"><span data-lang="en">M-rare</span><span data-lang="es">Punto</span></span></span>
+                    <span><span class="full"><span data-lang="en">Medium</span><span data-lang="es">Cocido</span></span><span class="abbr"><span data-lang="en">Med</span><span data-lang="es">Coc.</span></span></span>
+                    <span><span class="full"><span data-lang="en">Well done</span><span data-lang="es">Bien cocido</span></span><span class="abbr"><span data-lang="en">Well</span><span data-lang="es">Bien</span></span></span>
                 </div>
                 <div class="doneness-readout"></div>
             </div>
@@ -93,84 +107,126 @@
 
             <!-- The meat -->
             <div class="menu-section reveal">
-                <h3 class="menu-section-title">The asado · carnes <span style="font-family: var(--sans); font-style: normal; font-size: 0.65rem; letter-spacing: 0.16em; color: var(--ink-mute); margin-left: 12px;">— hover for grill temp</span></h3>
+                <h3 class="menu-section-title"><span data-lang="en">The asado · carnes</span><span data-lang="es">El asado · carnes</span></h3>
                 <div class="menu-grid">
-                    <div class="menu-item" data-temp="22" data-temp-label="170°C">
+                    <div class="menu-item">
                         <h4>Asado de tira <span class="es">asado de tira</span></h4>
-                        <p>Short rib cut across the bone, slow-cooked Argentine-style. The signature.</p>
+                        <p>
+                            <span data-lang="en">Short rib cut across the bone, slow-cooked Argentine-style. The signature.</span>
+                            <span data-lang="es">Tira de costilla cortada al hueso, a fuego lento al estilo argentino. El corte insignia.</span>
+                        </p>
                     </div>
-                    <div class="menu-item" data-temp="68" data-temp-label="245°C">
+                    <div class="menu-item">
                         <h4>Vacío <span class="es">vacío</span></h4>
-                        <p>Flank steak with a crisp fat cap. Soft, juicy, the crowd favourite.</p>
+                        <p>
+                            <span data-lang="en">Flank steak with a crisp fat cap. Soft, juicy, the crowd favourite.</span>
+                            <span data-lang="es">Con su capita de grasa crocante. Tierno, jugoso, el favorito de la mesa.</span>
+                        </p>
                     </div>
-                    <div class="menu-item" data-temp="95" data-temp-label="300°C">
+                    <div class="menu-item">
                         <h4>Entraña <span class="es">entraña</span></h4>
-                        <p>Skirt steak — intense, marbled, served rare to medium.</p>
+                        <p>
+                            <span data-lang="en">Intense, marbled, served rare to medium.</span>
+                            <span data-lang="es">Intensa, marmolada, servida jugosa o a punto.</span>
+                        </p>
                     </div>
                 </div>
             </div>
 
             <!-- Sides — bread, sauces, vegetables -->
             <div class="menu-section reveal">
-                <h3 class="menu-section-title">With the asado · acompañamientos</h3>
+                <h3 class="menu-section-title"><span data-lang="en">With the asado · acompañamientos</span><span data-lang="es">Con el asado · acompañamientos</span></h3>
                 <div class="menu-grid">
                     <div class="menu-item">
-                        <h4>Bread <span class="es">pan</span></h4>
-                        <p>Fresh local bread, served with every plate. The other half of a good asado.</p>
+                        <h4><span data-lang="en">Bread</span><span data-lang="es">Pan</span> <span class="es">pan</span></h4>
+                        <p>
+                            <span data-lang="en">Fresh local bread, served with every plate. The other half of a good asado.</span>
+                            <span data-lang="es">Pan fresco local, con cada plato. La otra mitad de un buen asado.</span>
+                        </p>
                     </div>
                     <div class="menu-item">
                         <h4>Chimichurri <span class="es">chimichurri</span></h4>
-                        <p>House-made: parsley, garlic, oregano, vinegar, olive oil. On every table.</p>
+                        <p>
+                            <span data-lang="en">House-made: parsley, garlic, oregano, vinegar, olive oil. On every table.</span>
+                            <span data-lang="es">Hecho por nosotros: perejil, ajo, orégano, vinagre, aceite de oliva. En cada mesa.</span>
+                        </p>
                     </div>
                     <div class="menu-item">
                         <h4>Salsa criolla <span class="es">salsa criolla</span></h4>
-                        <p>Diced tomato, onion, pepper, vinegar. Bright, fresh, cuts the fat.</p>
+                        <p>
+                            <span data-lang="en">Diced tomato, onion, pepper, vinegar. Bright, fresh, cuts the fat.</span>
+                            <span data-lang="es">Tomate, cebolla y morrón cortados a cuchillo, con vinagre. Fresca, corta la grasa.</span>
+                        </p>
                     </div>
                     <div class="menu-item">
-                        <h4>Vegetable skewers <span class="es">pinchos de verdura</span></h4>
-                        <p>Zucchini, peppers, onion, mushroom, eggplant — threaded and grilled over embers.</p>
+                        <h4><span data-lang="en">Vegetable skewers</span><span data-lang="es">Pinchos de verdura</span> <span class="es">pinchos de verdura</span></h4>
+                        <p>
+                            <span data-lang="en">Zucchini, peppers, onion, mushroom, eggplant — threaded and grilled over embers.</span>
+                            <span data-lang="es">Calabacín, morrones, cebolla, hongos, berenjena — ensartados y a las brasas.</span>
+                        </p>
                     </div>
                     <div class="menu-item">
-                        <h4>Whole grilled vegetables <span class="es">verduras enteras caseras</span></h4>
-                        <p>Whole onion, pepper, sweet potato or eggplant, slow-roasted in the embers. Homemade.</p>
+                        <h4><span data-lang="en">Whole grilled vegetables</span><span data-lang="es">Verduras enteras caseras</span> <span class="es">verduras enteras</span></h4>
+                        <p>
+                            <span data-lang="en">Whole onion, pepper, sweet potato or eggplant, slow-roasted in the embers. Homemade.</span>
+                            <span data-lang="es">Cebolla, morrón, batata o berenjena enteros, a las brasas, lento. Caseros.</span>
+                        </p>
                     </div>
                 </div>
             </div>
 
             <!-- Drinks — canned only, with ice -->
             <div class="menu-section reveal">
-                <h3 class="menu-section-title">Drinks · bebidas <span style="font-family: var(--sans); font-style: normal; font-size: 0.65rem; letter-spacing: 0.16em; color: var(--ink-mute); margin-left: 12px;">— canned, cold, no fuss</span></h3>
+                <h3 class="menu-section-title"><span data-lang="en">Drinks · bebidas</span><span data-lang="es">Bebidas</span> <span style="font-family: var(--sans); font-style: normal; font-size: 0.65rem; letter-spacing: 0.16em; color: var(--ink-mute); margin-left: 12px;"><span data-lang="en">— canned, cold, no fuss</span><span data-lang="es">— en lata, frías, sin vueltas</span></span></h3>
                 <div class="menu-grid">
                     <div class="menu-item">
-                        <h4>Water <span class="es">agua</span></h4>
-                        <p>Still and sparkling, in cans or bottles. Plenty for the table.</p>
+                        <h4><span data-lang="en">Water</span><span data-lang="es">Agua</span> <span class="es">agua</span></h4>
+                        <p>
+                            <span data-lang="en">Still and sparkling, in cans or bottles. Plenty for the table.</span>
+                            <span data-lang="es">Con y sin gas, en latas o botellas. De sobra para la mesa.</span>
+                        </p>
                     </div>
                     <div class="menu-item">
-                        <h4>Soft drinks <span class="es">refrescos</span></h4>
-                        <p>Coca-Cola, Sprite, Fanta and others — by the can.</p>
+                        <h4><span data-lang="en">Soft drinks</span><span data-lang="es">Gaseosas</span> <span class="es">refrescos</span></h4>
+                        <p>
+                            <span data-lang="en">Coca-Cola, Sprite, Fanta and others — by the can.</span>
+                            <span data-lang="es">Coca-Cola, Sprite, Fanta y otras — en lata.</span>
+                        </p>
                     </div>
                     <div class="menu-item">
-                        <h4>Beer <span class="es">cerveza</span></h4>
-                        <p>Estrella Damm, Moritz, Mahou — cold cans, kept on ice.</p>
+                        <h4><span data-lang="en">Beer</span><span data-lang="es">Cerveza</span> <span class="es">cerveza</span></h4>
+                        <p>
+                            <span data-lang="en">Estrella Damm, Moritz, Mahou — cold cans, kept on ice.</span>
+                            <span data-lang="es">Estrella Damm, Moritz, Mahou — latas frías, en hielo.</span>
+                        </p>
                     </div>
                     <div class="menu-item">
-                        <h4>Canned cocktails <span class="es">tragos en lata</span></h4>
-                        <p>Ready-to-drink: gin tonic, vodka tonic, rum &amp; coke, mojito, fernet con cola.</p>
+                        <h4><span data-lang="en">Canned cocktails</span><span data-lang="es">Tragos en lata</span> <span class="es">tragos en lata</span></h4>
+                        <p>
+                            <span data-lang="en">Ready-to-drink: gin tonic, vodka tonic, rum &amp; coke, mojito, fernet con cola.</span>
+                            <span data-lang="es">Listos para tomar: gin tonic, vodka tonic, ron con cola, mojito, fernet con cola.</span>
+                        </p>
                     </div>
                     <div class="menu-item">
-                        <h4>Ice <span class="es">hielo</span></h4>
-                        <p>Plenty of it. Keeps everything cold all afternoon.</p>
+                        <h4><span data-lang="en">Ice</span><span data-lang="es">Hielo</span> <span class="es">hielo</span></h4>
+                        <p>
+                            <span data-lang="en">Plenty of it. Keeps everything cold all afternoon.</span>
+                            <span data-lang="es">De sobra. Mantiene todo frío toda la tarde.</span>
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Service / disposables -->
+            <!-- Service / tableware -->
             <div class="menu-section reveal">
-                <h3 class="menu-section-title">Service · all disposable</h3>
+                <h3 class="menu-section-title"><span data-lang="en">Service · on us</span><span data-lang="es">Servicio · va por nosotros</span></h3>
                 <div class="menu-grid">
                     <div class="menu-item">
-                        <h4>Plates, cutlery, cups, napkins</h4>
-                        <p>Everything is single-use disposable. We bring it all, take it all away — you don't wash a single thing.</p>
+                        <h4><span data-lang="en">Tableware</span><span data-lang="es">Vajilla</span></h4>
+                        <p>
+                            <span data-lang="en">We bring everything you need for the table, and take it all away when we leave. You don't have to think about it.</span>
+                            <span data-lang="es">Llevamos todo lo que hace falta para la mesa, y nos lo llevamos al irnos. Vos no pensás en eso.</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -182,42 +238,48 @@
     <section class="stat-strip" style="padding: 110px 0;">
         <div class="container">
             <div class="section-head center reveal">
-                <span class="eyebrow center">What's included</span>
-                <h2>One package.<br /><em>One per-person price.</em></h2>
-                <p class="lead">Everything below is included in the quote. Tell us your headcount, we send the price.</p>
+                <span class="eyebrow center"><span data-lang="en">What's included</span><span data-lang="es">Qué incluye</span></span>
+                <h2>
+                    <span data-lang="en">One package.<br /><em>One per-person price.</em></span>
+                    <span data-lang="es">Un paquete.<br /><em>Un precio por persona.</em></span>
+                </h2>
+                <p class="lead">
+                    <span data-lang="en">Everything below is included in the quote. Tell us your headcount, we send the price.</span>
+                    <span data-lang="es">Todo lo de abajo está incluido. Decinos cuántos son y te mandamos el precio.</span>
+                </p>
             </div>
 
             <div class="event-grid reveal">
                 <div class="event-card tilt">
-                    <span class="eyebrow">The food</span>
-                    <h3>Asado &amp; sides</h3>
+                    <span class="eyebrow"><span data-lang="en">The food</span><span data-lang="es">La comida</span></span>
+                    <h3><span data-lang="en">Asado &amp; sides</span><span data-lang="es">Asado y guarniciones</span></h3>
                     <ul>
-                        <li>Argentine beef cuts (asado de tira · vacío · entraña)</li>
-                        <li>Fresh bread</li>
-                        <li>House chimichurri &amp; salsa criolla</li>
-                        <li>Vegetable skewers or whole grilled vegetables</li>
+                        <li><span data-lang="en">Argentine beef cuts (asado de tira · vacío · entraña)</span><span data-lang="es">Cortes argentinos (asado de tira · vacío · entraña)</span></li>
+                        <li><span data-lang="en">Fresh bread</span><span data-lang="es">Pan fresco</span></li>
+                        <li><span data-lang="en">House chimichurri &amp; salsa criolla</span><span data-lang="es">Chimichurri y salsa criolla caseros</span></li>
+                        <li><span data-lang="en">Vegetable skewers or whole grilled vegetables</span><span data-lang="es">Pinchos de verdura o verduras enteras a la parrilla</span></li>
                     </ul>
                 </div>
                 <div class="event-card tilt">
-                    <span class="eyebrow">The drinks</span>
-                    <h3>Cold &amp; canned</h3>
+                    <span class="eyebrow"><span data-lang="en">The drinks</span><span data-lang="es">Las bebidas</span></span>
+                    <h3><span data-lang="en">Cold &amp; canned</span><span data-lang="es">Frías y en lata</span></h3>
                     <ul>
-                        <li>Still and sparkling water</li>
-                        <li>Soft drinks (Coca-Cola, Sprite, etc.)</li>
-                        <li>Canned beer (Estrella Damm, Moritz, Mahou)</li>
-                        <li>Canned cocktails &amp; spirits</li>
-                        <li>Ice — plenty of it</li>
+                        <li><span data-lang="en">Still and sparkling water</span><span data-lang="es">Agua con y sin gas</span></li>
+                        <li><span data-lang="en">Soft drinks (Coca-Cola, Sprite, etc.)</span><span data-lang="es">Gaseosas (Coca-Cola, Sprite, etc.)</span></li>
+                        <li><span data-lang="en">Canned beer (Estrella Damm, Moritz, Mahou)</span><span data-lang="es">Cerveza en lata (Estrella Damm, Moritz, Mahou)</span></li>
+                        <li><span data-lang="en">Canned cocktails &amp; spirits</span><span data-lang="es">Tragos en lata y bebidas alcohólicas</span></li>
+                        <li><span data-lang="en">Ice — plenty of it</span><span data-lang="es">Hielo — de sobra</span></li>
                     </ul>
                 </div>
                 <div class="event-card tilt">
-                    <span class="eyebrow">Service</span>
-                    <h3>Hands-off for you</h3>
+                    <span class="eyebrow"><span data-lang="en">Service</span><span data-lang="es">Servicio</span></span>
+                    <h3><span data-lang="en">Hands-off for you</span><span data-lang="es">Vos no hacés nada</span></h3>
                     <ul>
-                        <li>Bruno &amp; Facundo from start to finish</li>
-                        <li>Charcoal, parrilla, fire</li>
-                        <li>All disposable plates, cups, cutlery, napkins</li>
-                        <li>Setup &amp; full cleanup — you don't wash a thing</li>
-                        <li>Venue scouting if you need one (extra)</li>
+                        <li><span data-lang="en">Bruno &amp; Facundo from start to finish</span><span data-lang="es">Bruno y Facundo de principio a fin</span></li>
+                        <li><span data-lang="en">Charcoal, parrilla, fire</span><span data-lang="es">Carbón, parrilla, fuego</span></li>
+                        <li><span data-lang="en">Tableware brought &amp; taken away by us</span><span data-lang="es">Vajilla, la traemos y nos la llevamos</span></li>
+                        <li><span data-lang="en">Setup &amp; full cleanup — you don't wash a thing</span><span data-lang="es">Armado y limpieza — no lavás nada</span></li>
+                        <li><span data-lang="en">Venue scouting if you need one (extra)</span><span data-lang="es">Búsqueda de lugar si necesitás (extra)</span></li>
                     </ul>
                 </div>
             </div>
@@ -227,10 +289,16 @@
     <!-- CTA -->
     <section class="cta-banner">
         <div class="container reveal">
-            <span class="eyebrow center">Hungry yet?</span>
-            <h2>Tell us what you'd like to eat.</h2>
-            <p class="lead">We'll build a menu around your group and send a quote within 24 hours.</p>
-            <a href="book.html" class="btn btn-primary btn-large">Request a Quote</a>
+            <span class="eyebrow center"><span data-lang="en">Hungry yet?</span><span data-lang="es">¿Hambre?</span></span>
+            <h2>
+                <span data-lang="en">Tell us what you'd like to eat.</span>
+                <span data-lang="es">Contanos qué querés comer.</span>
+            </h2>
+            <p class="lead">
+                <span data-lang="en">We'll build a menu around your group and send a quote within 24 hours.</span>
+                <span data-lang="es">Armamos un menú según tu grupo y te mandamos presupuesto en 24 horas.</span>
+            </p>
+            <a href="book.html" class="btn btn-primary btn-large"><span data-lang="en">Request a Quote</span><span data-lang="es">Pedir presupuesto</span></a>
         </div>
     </section>
 
@@ -240,19 +308,22 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h4>Los Hermanos Parrilleros</h4>
-                    <p>Authentic Argentine asado, brought to your terrace, garden, rooftop or rented venue anywhere in Barcelona.</p>
+                    <p>
+                        <span data-lang="en">Authentic Argentine asado, brought to your terrace, garden, rooftop or rented venue anywhere in Barcelona.</span>
+                        <span data-lang="es">Asado argentino auténtico, llevado a tu terraza, jardín, azotea o lugar reservado en cualquier punto de Barcelona.</span>
+                    </p>
                 </div>
                 <div class="footer-col">
-                    <h5>Explore</h5>
+                    <h5><span data-lang="en">Explore</span><span data-lang="es">Explorar</span></h5>
                     <ul>
-                        <li><a href="experience.html">The Experience</a></li>
-                        <li><a href="menu.html">Menu</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="experience.html"><span data-lang="en">The Experience</span><span data-lang="es">La Experiencia</span></a></li>
+                        <li><a href="menu.html"><span data-lang="en">Menu</span><span data-lang="es">Menú</span></a></li>
+                        <li><a href="events.html"><span data-lang="en">Events</span><span data-lang="es">Eventos</span></a></li>
+                        <li><a href="about.html"><span data-lang="en">About Us</span><span data-lang="es">Nosotros</span></a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h5>Contact</h5>
+                    <h5><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h5>
                     <ul>
                         <li><a href="https://wa.me/34652251002" target="_blank" rel="noopener">+34 652 25 10 02 · Bruno</a></li>
                         <li><a href="https://wa.me/34645720420" target="_blank" rel="noopener">+34 645 72 04 20 · Facundo</a></li>
@@ -261,19 +332,19 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h5>Service area</h5>
+                    <h5><span data-lang="en">Service area</span><span data-lang="es">Zona de servicio</span></h5>
                     <ul>
-                        <li>Barcelona city</li>
+                        <li><span data-lang="en">Barcelona city</span><span data-lang="es">Barcelona ciudad</span></li>
                         <li>Sitges &amp; Garraf</li>
-                        <li>Maresme coast</li>
+                        <li><span data-lang="en">Maresme coast</span><span data-lang="es">Costa del Maresme</span></li>
                         <li>Penedès &amp; Empordà</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>© 2026 Los Hermanos Parrilleros · Barcelona, Spain</span>
+                <span>© 2026 Los Hermanos Parrilleros · Barcelona, <span data-lang="en">Spain</span><span data-lang="es">España</span></span>
                 <span class="credit">Hecha por <a href="https://vantia.digital" target="_blank" rel="noopener">Vantia Digital</a></span>
-                <span><a href="book.html">Book an Asado →</a></span>
+                <span><a href="book.html"><span data-lang="en">Book an Asado →</span><span data-lang="es">Reservar Asado →</span></a></span>
             </div>
         </div>
     </footer>

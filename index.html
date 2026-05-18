@@ -15,21 +15,28 @@
 </head>
 <body>
 
+    <!-- LANGUAGE BAR -->
+    <div class="lang-bar" role="group" aria-label="Language">
+        <button class="lang-opt" data-set-lang="en" type="button">English</button>
+        <span class="sep" aria-hidden="true">·</span>
+        <button class="lang-opt" data-set-lang="es" type="button">Español</button>
+    </div>
+
     <!-- NAV -->
     <nav class="site-nav">
         <div class="nav-inner">
             <a href="index.html" class="brand">
                 <span class="brand-mark">Los Hermanos Parrilleros</span>
-                <span class="brand-sub">🇦🇷 Argentine asado · Barcelona</span>
+                <span class="brand-sub">🇦🇷 <span data-lang="en">Argentine asado · Barcelona</span><span data-lang="es">Asado argentino · Barcelona</span></span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="experience.html">The Experience</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a></li>
+                <li><a href="experience.html"><span data-lang="en">The Experience</span><span data-lang="es">La Experiencia</span></a></li>
+                <li><a href="menu.html"><span data-lang="en">Menu</span><span data-lang="es">Menú</span></a></li>
+                <li><a href="events.html"><span data-lang="en">Events</span><span data-lang="es">Eventos</span></a></li>
+                <li><a href="about.html"><span data-lang="en">About</span><span data-lang="es">Nosotros</span></a></li>
             </ul>
-            <a href="book.html" class="nav-cta">Book an Asado</a>
+            <a href="book.html" class="nav-cta"><span data-lang="en">Book an Asado</span><span data-lang="es">Reservar Asado</span></a>
             <button class="menu-toggle" aria-label="Open menu">
                 <span></span><span></span><span></span>
             </button>
@@ -46,24 +53,26 @@
             <span class="ar-badge-text">
                 <span class="ar-badge-flag">🇦🇷</span>
                 <span class="ar-badge-line">
-                    <strong>Made in Argentina</strong>
-                    <em>cooked in Barcelona</em>
+                    <strong><span data-lang="en">Made in Argentina</span><span data-lang="es">Hecho en Argentina</span></strong>
+                    <em><span data-lang="en">cooked in Barcelona</span><span data-lang="es">cocinado en Barcelona</span></em>
                 </span>
             </span>
         </div>
 
         <div class="container">
             <div class="hero-content">
-                <span class="eyebrow">Private Argentine Asado · Barcelona</span>
-                <h1 data-split>The asado, brought to you.</h1>
+                <span class="eyebrow"><span data-lang="en">Private Argentine Asado · Barcelona</span><span data-lang="es">Asado argentino privado · Barcelona</span></span>
+                <h1>
+                    <span data-lang="en">The asado, brought to you.</span>
+                    <span data-lang="es">El asado, donde quieras.</span>
+                </h1>
                 <p class="lead">
-                    Two brothers from Argentina. A grill, slow embers, and the kind of long lunch
-                    your trip to Barcelona deserves. We bring the meat, the fire, the wine — and a
-                    place to gather, if you need one.
+                    <span data-lang="en">Two brothers from Argentina. A grill, slow embers, and the kind of long lunch your trip to Barcelona deserves. We bring the meat, the fire, the wine — and a place to gather, if you need one.</span>
+                    <span data-lang="es">Dos hermanos argentinos. Una parrilla, brasas lentas, y la sobremesa que tu evento en Barcelona se merece. Ponemos la carne, el fuego, las bebidas — y hasta el lugar, si lo necesitás.</span>
                 </p>
                 <div class="hero-actions">
-                    <span class="magnet"><a href="book.html" class="btn btn-primary btn-large sweep" data-smoke-nav>Book an Asado</a></span>
-                    <span class="magnet"><a href="experience.html" class="btn btn-ghost btn-large">How it Works</a></span>
+                    <span class="magnet"><a href="book.html" class="btn btn-primary btn-large sweep" data-smoke-nav><span data-lang="en">Book an Asado</span><span data-lang="es">Reservar Asado</span></a></span>
+                    <span class="magnet"><a href="experience.html" class="btn btn-ghost btn-large"><span data-lang="en">How it Works</span><span data-lang="es">Cómo funciona</span></a></span>
                 </div>
             </div>
         </div>
@@ -74,35 +83,49 @@
         <span class="deco-numeral tr" aria-hidden="true">I</span>
         <div class="container" style="position: relative; z-index: 1;">
             <div class="section-head reveal">
-                <span class="eyebrow">Why book with us</span>
-                <h2>An Argentine ritual,<br />without the planning.</h2>
+                <span class="eyebrow"><span data-lang="en">Why book with us</span><span data-lang="es">Por qué reservar con nosotros</span></span>
+                <h2>
+                    <span data-lang="en">An Argentine ritual,<br />without the planning.</span>
+                    <span data-lang="es">Un ritual argentino,<br />sin la planificación.</span>
+                </h2>
                 <p class="lead">
-                    You bring the friends. We bring everything else — including the venue, if
-                    you need one. No shopping list, no scrambling for charcoal, no setup or
-                    cleanup. Just the long table you came here for.
+                    <span data-lang="en">You bring the friends. We bring everything else — including the venue, if you need one. No shopping list, no scrambling for charcoal, no setup or cleanup. Just the long table you came here for.</span>
+                    <span data-lang="es">Vos ponés a los amigos. Nosotros traemos el resto — incluido el lugar, si lo necesitás. Sin listas de compras, sin correr por el carbón, sin armado ni limpieza. Solo la sobremesa larga a la que viniste.</span>
                 </p>
             </div>
 
             <div class="feature-grid reveal">
                 <div class="feature tilt">
                     <div class="feature-num">01</div>
-                    <h3>Meat &amp; fire</h3>
-                    <p>Argentine asado cuts — vacío, asado de tira, entraña — grilled slow over real charcoal, by people who grew up doing it. With fresh bread, chimichurri and salsa criolla.</p>
+                    <h3><span data-lang="en">Meat &amp; fire</span><span data-lang="es">Carne y fuego</span></h3>
+                    <p>
+                        <span data-lang="en">Argentine asado cuts — vacío, asado de tira, entraña — grilled slow over real charcoal, by people who grew up doing it. With fresh bread, chimichurri and salsa criolla.</span>
+                        <span data-lang="es">Cortes argentinos — vacío, asado de tira, entraña — a la parrilla, lento, sobre carbón de verdad, por gente que se crió haciéndolo. Con pan fresco, chimichurri y salsa criolla.</span>
+                    </p>
                 </div>
                 <div class="feature tilt">
                     <div class="feature-num">02</div>
-                    <h3>Cold drinks, no fuss</h3>
-                    <p>Canned beer, soft drinks, water and ready-to-drink cocktails. All cold, on plenty of ice. Simple — no glassware, no waiting on the bar.</p>
+                    <h3><span data-lang="en">Cold drinks, no fuss</span><span data-lang="es">Bebidas frías, sin vueltas</span></h3>
+                    <p>
+                        <span data-lang="en">Canned beer, soft drinks, water and ready-to-drink cocktails. All cold, on plenty of ice. Simple — no glassware, no waiting on the bar.</span>
+                        <span data-lang="es">Cerveza en lata, gaseosas, agua y tragos listos para tomar. Todo frío, con hielo abundante. Simple — sin esperar la barra.</span>
+                    </p>
                 </div>
                 <div class="feature tilt">
                     <div class="feature-num">03</div>
-                    <h3>Venue if you need it</h3>
-                    <p>Staying in an Airbnb without a terrace? We'll find and book a suitable spot in Barcelona — rooftop, garden, masía — and handle the whole arrangement.</p>
+                    <h3><span data-lang="en">Venue if you need it</span><span data-lang="es">El lugar, si lo necesitás</span></h3>
+                    <p>
+                        <span data-lang="en">No outdoor space at home? We'll find and book a suitable spot in Barcelona — rooftop, garden, masía — and handle the whole arrangement.</span>
+                        <span data-lang="es">¿No tenés un espacio al aire libre? Lo buscamos y reservamos por vos en Barcelona — terraza, jardín, masía — y arreglamos todo.</span>
+                    </p>
                 </div>
                 <div class="feature tilt">
                     <div class="feature-num">04</div>
-                    <h3>One price, no surprises</h3>
-                    <p>A single per-person quote covers food, drink, equipment, charcoal, disposable tableware, service and cleanup. No add-ons, no last-minute extras.</p>
+                    <h3><span data-lang="en">One price, no surprises</span><span data-lang="es">Un precio, sin sorpresas</span></h3>
+                    <p>
+                        <span data-lang="en">A single per-person quote covers food, drink, equipment, charcoal, tableware, service and cleanup. No add-ons, no last-minute extras.</span>
+                        <span data-lang="es">Un único precio por persona incluye comida, bebida, equipo, carbón, vajilla, servicio y limpieza. Sin extras de último momento.</span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -114,9 +137,12 @@
         <div class="container" style="position: relative; z-index: 1;">
             <div class="rail-section">
                 <div class="rail-side reveal">
-                    <span class="eyebrow">The brothers</span>
-                    <h2>One grill,<br /><em>since we were kids.</em></h2>
-                    <a href="about.html" class="btn btn-ghost" style="margin-top: 28px;">Read our story →</a>
+                    <span class="eyebrow"><span data-lang="en">The brothers</span><span data-lang="es">Los hermanos</span></span>
+                    <h2>
+                        <span data-lang="en">One grill,<br /><em>since we were kids.</em></span>
+                        <span data-lang="es">Una parrilla,<br /><em>desde chicos.</em></span>
+                    </h2>
+                    <a href="about.html" class="btn btn-ghost" style="margin-top: 28px;"><span data-lang="en">Read our story →</span><span data-lang="es">Nuestra historia →</span></a>
                 </div>
                 <div class="reveal">
                     <div class="bro-names" aria-label="Bruno and Facundo">
@@ -125,20 +151,18 @@
                         <span class="second">Facundo</span>
                     </div>
                     <p style="margin-top: 36px; color: var(--ink-soft); font-size: 1.05rem; max-width: 560px;">
-                        We're two brothers from Argentina, now living in Barcelona. Back home,
-                        Sunday meant an asado — neighbours, cousins, music, hours at the table.
-                        That's the experience we bring to your event.
+                        <span data-lang="en">We're two brothers from Argentina, now living in Barcelona. Back home, Sunday meant an asado — neighbours, cousins, music, hours at the table. That's the experience we bring to your event.</span>
+                        <span data-lang="es">Somos dos hermanos argentinos, viviendo en Barcelona. Allá, domingo era sinónimo de asado — vecinos, primos, música, horas en la mesa. Esa es la experiencia que llevamos a tu evento.</span>
                     </p>
                     <p style="color: var(--ink-soft); font-size: 1.05rem; max-width: 560px; margin-top: 16px;">
-                        Not a buffet, not a food-truck. A proper Argentine parrilla, hosted by
-                        people who care about how the chorizo is bitten before the entraña hits
-                        the grill.
+                        <span data-lang="en">Not a buffet, not a food-truck. A proper Argentine parrilla, hosted by people who care about how the chorizo is bitten before the entraña hits the grill.</span>
+                        <span data-lang="es">No es un buffet ni un food-truck. Es una parrilla argentina de verdad, atendida por gente que se preocupa de cómo se muerde el chorizo antes de que caiga la entraña.</span>
                     </p>
                     <div class="bro-tags">
                         <span class="bro-tag">Asadores</span>
-                        <span class="bro-tag">From Rosario, AR</span>
+                        <span class="bro-tag"><span data-lang="en">Argentine</span><span data-lang="es">Argentinos</span></span>
                         <span class="bro-tag">EN · ES · IT</span>
-                        <span class="bro-tag">Since 2022 in BCN</span>
+                        <span class="bro-tag"><span data-lang="en">Since 2022 in BCN</span><span data-lang="es">Desde 2022 en BCN</span></span>
                     </div>
                 </div>
             </div>
@@ -151,19 +175,19 @@
             <div class="stat-grid">
                 <div>
                     <div class="stat-num"><span class="counter" data-to="100">0</span></div>
-                    <div class="stat-label">Guests, max per event</div>
+                    <div class="stat-label"><span data-lang="en">Guests, max per event</span><span data-lang="es">Personas, máximo por evento</span></div>
                 </div>
                 <div>
                     <div class="stat-num"><span class="counter" data-to="6" data-suffix="h">0</span></div>
-                    <div class="stat-label">Average asado, end to end</div>
+                    <div class="stat-label"><span data-lang="en">Average asado, end to end</span><span data-lang="es">Duración promedio del asado</span></div>
                 </div>
                 <div>
-                    <div class="stat-num"><span class="counter" data-to="12" data-suffix="+">0</span></div>
-                    <div class="stat-label">Argentine cuts on offer</div>
+                    <div class="stat-num"><span class="counter" data-to="3" data-suffix="+">0</span></div>
+                    <div class="stat-label"><span data-lang="en">Argentine cuts on offer</span><span data-lang="es">Cortes argentinos en oferta</span></div>
                 </div>
                 <div>
                     <div class="stat-num"><span class="counter" data-to="0">0</span></div>
-                    <div class="stat-label">Things you need to bring</div>
+                    <div class="stat-label"><span data-lang="en">Things you need to bring</span><span data-lang="es">Cosas que tenés que traer</span></div>
                 </div>
             </div>
         </div>
@@ -174,22 +198,26 @@
         <span class="quote-glyph" aria-hidden="true">"</span>
         <div class="container reveal">
             <blockquote>
-                The asado is not a meal. It is a way of spending the afternoon.
+                <span data-lang="en">The asado is not a meal. It is a way of spending the afternoon.</span>
+                <span data-lang="es">El asado no es una comida. Es una manera de pasar la tarde.</span>
             </blockquote>
-            <div class="quote-attribution">— a saying we grew up with</div>
+            <div class="quote-attribution"><span data-lang="en">— a saying we grew up with</span><span data-lang="es">— un dicho con el que crecimos</span></div>
         </div>
     </section>
 
     <!-- CTA BANNER -->
     <section class="cta-banner">
         <div class="container reveal">
-            <span class="eyebrow center">Ready when you are</span>
-            <h2>Tell us the date.<br />We'll handle the rest.</h2>
+            <span class="eyebrow center"><span data-lang="en">Ready when you are</span><span data-lang="es">Cuando quieras</span></span>
+            <h2>
+                <span data-lang="en">Tell us the date.<br />We'll handle the rest.</span>
+                <span data-lang="es">Contanos la fecha.<br />Del resto nos encargamos nosotros.</span>
+            </h2>
             <p class="lead">
-                Send us the day, the number of guests and where you're staying. We'll come
-                back with a quote and a plan within 24 hours.
+                <span data-lang="en">Send us the day, the number of guests and the location. We'll come back with a quote and a plan within 24 hours. Please book at least 3 days in advance.</span>
+                <span data-lang="es">Mandanos el día, la cantidad de personas y el lugar. Te respondemos con presupuesto y plan en 24 horas. Reservá con un mínimo de 3 días de anticipación.</span>
             </p>
-            <a href="book.html" class="btn btn-primary btn-large">Request a Quote</a>
+            <a href="book.html" class="btn btn-primary btn-large"><span data-lang="en">Request a Quote</span><span data-lang="es">Pedir presupuesto</span></a>
         </div>
     </section>
 
@@ -199,19 +227,22 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h4>Los Hermanos Parrilleros</h4>
-                    <p>Authentic Argentine asado, brought to your terrace, garden, rooftop or rented venue anywhere in Barcelona.</p>
+                    <p>
+                        <span data-lang="en">Authentic Argentine asado, brought to your terrace, garden, rooftop or rented venue anywhere in Barcelona.</span>
+                        <span data-lang="es">Asado argentino auténtico, llevado a tu terraza, jardín, azotea o lugar reservado en cualquier punto de Barcelona.</span>
+                    </p>
                 </div>
                 <div class="footer-col">
-                    <h5>Explore</h5>
+                    <h5><span data-lang="en">Explore</span><span data-lang="es">Explorar</span></h5>
                     <ul>
-                        <li><a href="experience.html">The Experience</a></li>
-                        <li><a href="menu.html">Menu</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="experience.html"><span data-lang="en">The Experience</span><span data-lang="es">La Experiencia</span></a></li>
+                        <li><a href="menu.html"><span data-lang="en">Menu</span><span data-lang="es">Menú</span></a></li>
+                        <li><a href="events.html"><span data-lang="en">Events</span><span data-lang="es">Eventos</span></a></li>
+                        <li><a href="about.html"><span data-lang="en">About Us</span><span data-lang="es">Nosotros</span></a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h5>Contact</h5>
+                    <h5><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h5>
                     <ul>
                         <li><a href="https://wa.me/34652251002" target="_blank" rel="noopener">+34 652 25 10 02 · Bruno</a></li>
                         <li><a href="https://wa.me/34645720420" target="_blank" rel="noopener">+34 645 72 04 20 · Facundo</a></li>
@@ -220,19 +251,19 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h5>Service area</h5>
+                    <h5><span data-lang="en">Service area</span><span data-lang="es">Zona de servicio</span></h5>
                     <ul>
-                        <li>Barcelona city</li>
+                        <li><span data-lang="en">Barcelona city</span><span data-lang="es">Barcelona ciudad</span></li>
                         <li>Sitges &amp; Garraf</li>
-                        <li>Maresme coast</li>
+                        <li><span data-lang="en">Maresme coast</span><span data-lang="es">Costa del Maresme</span></li>
                         <li>Penedès &amp; Empordà</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>© 2026 Los Hermanos Parrilleros · Barcelona, Spain</span>
+                <span>© 2026 Los Hermanos Parrilleros · Barcelona, <span data-lang="en">Spain</span><span data-lang="es">España</span></span>
                 <span class="credit">Hecha por <a href="https://vantia.digital" target="_blank" rel="noopener">Vantia Digital</a></span>
-                <span><a href="book.html">Book an Asado →</a></span>
+                <span><a href="book.html"><span data-lang="en">Book an Asado →</span><span data-lang="es">Reservar Asado →</span></a></span>
             </div>
         </div>
     </footer>
