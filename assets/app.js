@@ -216,58 +216,152 @@
        BESPOKE COMPONENTS
        ================================================================ */
 
-    /* ---------- Smoke wisp on Book CTA click ----------
-       Subtle, realistic smoke that rises from the button when clicked, then
-       navigates. Small puffs, soft gray, dispersing upward — NOT a fullscreen
-       fill. The page change happens while the smoke is still wisping. */
+    /* ---------- Book CTAs: catch fire on hover, smoke transition on click ----
+       Hover: button gets ember glow (CSS) + JS spawns continuous embers
+              and quality smoke wisps that drift upward from the button.
+       Click: a denser puff of the same wisps emanates from the button, then
+              navigates after a short delay. */
+
     const _hereForSmoke = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    const _isCoarsePointer = window.matchMedia('(hover: none)').matches;
+
+    function spawnWispNode(host, x, y, opts) {
+        const w = document.createElement('span');
+        w.className = opts.cls || 'wisp';
+        w.style.left = x + 'px';
+        w.style.top  = y + 'px';
+        const dx = (Math.random() * 70 - 35);
+        const dy = -(110 + Math.random() * 120);
+        w.style.setProperty('--dx', (opts.dx != null ? opts.dx : dx) + 'px');
+        w.style.setProperty('--dy', (opts.dy != null ? opts.dy : dy) + 'px');
+        w.style.setProperty('--scale', (3 + Math.random() * 1.6).toString());
+        w.style.setProperty('--rot', (Math.random() * 40 - 20) + 'deg');
+        const dur = opts.dur || (1.8 + Math.random() * 0.6);
+        w.style.setProperty('--dur', dur + 's');
+        host.appendChild(w);
+        setTimeout(function () { w.remove(); }, dur * 1000 + 100);
+    }
+
+    function spawnEmber(host, x, y) {
+        const e = document.createElement('span');
+        e.className = 'fire-ember';
+        e.style.left = x + 'px';
+        e.style.bottom = y + 'px';
+        e.style.setProperty('--dx', Math.round(Math.random() * 50 - 25) + 'px');
+        e.style.setProperty('--dy', -(80 + Math.random() * 90) + 'px');
+        const dur = 1.1 + Math.random() * 0.7;
+        e.style.setProperty('--dur', dur + 's');
+        host.appendChild(e);
+        setTimeout(function () { e.remove(); }, dur * 1000 + 100);
+    }
+
     document.querySelectorAll('a[href$="book.html"]').forEach(function (link) {
         const linkHref = (link.getAttribute('href') || '').toLowerCase();
         if (linkHref === _hereForSmoke) return;
+        if (!link.classList.contains('btn-primary')) {
+            // For non-primary book links (footer "Book an Asado →", nav-cta, etc.):
+            // give them the click→smoke too, but skip the fire-on-hover.
+            link.addEventListener('click', function (e) {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+                e.preventDefault();
+                doClickSmoke(link);
+            });
+            return;
+        }
+
+        // Inject fire-host inside the button for hover ember/wisp particles
+        let fireHost = link.querySelector('.fire-host');
+        if (!fireHost) {
+            fireHost = document.createElement('span');
+            fireHost.className = 'fire-host';
+            fireHost.setAttribute('aria-hidden', 'true');
+            link.appendChild(fireHost);
+        }
+
+        let hoverTimer = null;
+        let hovering = false;
+
+        function tick() {
+            if (!hovering) return;
+            const r = link.getBoundingClientRect();
+            // Coordinates relative to the fire-host (which spans top:-200 to bottom:-30 of the button)
+            // fire-host inset: left:0 right:0 top:-200 bottom:-30; its width = btn width
+            const w = r.width;
+            // ember from random position along bottom edge, rising up
+            const ex = Math.random() * w;
+            // bottom-anchored relative to fire-host (so bottom: small px = near button top)
+            const ey = 30 + Math.random() * 4;
+            spawnEmber(fireHost, ex, ey);
+            if (Math.random() < 0.45) {
+                spawnEmber(fireHost, Math.random() * w, 30 + Math.random() * 6);
+            }
+            // smoke wisp at slower cadence
+            if (Math.random() < 0.55) {
+                // wisp coordinates are relative to fire-host (absolute pos inside it)
+                // fire-host height covers above the button — y near the bottom of host
+                const wx = w / 2 + (Math.random() * w * 0.7 - w * 0.35);
+                const wy = fireHost.offsetHeight - 30 - Math.random() * 12;
+                spawnWispNode(fireHost, wx, wy, { cls: 'fire-wisp', dur: 1.6 + Math.random() * 0.6 });
+            }
+        }
+
+        link.addEventListener('mouseenter', function () {
+            if (prefersReduced || _isCoarsePointer) return;
+            hovering = true;
+            // burst of embers right away
+            tick();
+            hoverTimer = setInterval(tick, 130);
+        });
+        link.addEventListener('mouseleave', function () {
+            hovering = false;
+            if (hoverTimer) { clearInterval(hoverTimer); hoverTimer = null; }
+        });
+
         link.addEventListener('click', function (e) {
             if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
             e.preventDefault();
-            const href = link.getAttribute('href');
-            if (!href) return;
-
-            const r = link.getBoundingClientRect();
-            // emanate from the top edge of the button (where smoke naturally rises from)
-            const ox = r.left + r.width / 2;
-            const oy = r.top + r.height * 0.35;
-
-            const veil = document.createElement('div');
-            veil.className = 'smoke-veil';
-            veil.setAttribute('aria-hidden', 'true');
-
-            // 6 small wisps, mostly rising upward with slight horizontal drift
-            const total = prefersReduced ? 1 : 6;
-            for (let i = 0; i < total; i++) {
-                const puff = document.createElement('span');
-                puff.className = 'veil-puff';
-                // small random jitter around the origin
-                puff.style.left = (ox + (Math.random() * 24 - 12)) + 'px';
-                puff.style.top  = (oy + (Math.random() * 12 - 6)) + 'px';
-
-                // drift: mostly UP (-y), a little sideways
-                const dx = (Math.random() * 80 - 40);            // -40..40 px sideways
-                const dy = -(140 + Math.random() * 120);          // -140..-260 px up
-                puff.style.setProperty('--dx', dx + 'px');
-                puff.style.setProperty('--dy', dy + 'px');
-                puff.style.setProperty('--scale', (2.4 + Math.random() * 1.4).toString());
-                puff.style.setProperty('--rot', (Math.random() * 40 - 20) + 'deg');
-                puff.style.setProperty('--dur', (1.2 + Math.random() * 0.4) + 's');
-                puff.style.animationDelay = (i * 70) + 'ms';
-                veil.appendChild(puff);
-            }
-            document.body.appendChild(veil);
-
-            // Short delay — smoke is still rising when the page changes
-            const delay = prefersReduced ? 180 : 480;
-            setTimeout(function () {
-                window.location.href = href;
-            }, delay);
+            // stop hover spawner
+            hovering = false;
+            if (hoverTimer) { clearInterval(hoverTimer); hoverTimer = null; }
+            doClickSmoke(link);
         });
     });
+
+    function doClickSmoke(link) {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        const r = link.getBoundingClientRect();
+        const ox = r.left + r.width / 2;
+        const oy = r.top + r.height * 0.35;
+
+        const veil = document.createElement('div');
+        veil.className = 'smoke-veil';
+        veil.setAttribute('aria-hidden', 'true');
+
+        const total = prefersReduced ? 1 : 8;
+        for (let i = 0; i < total; i++) {
+            const w = document.createElement('span');
+            w.className = 'wisp';
+            w.style.left = (ox + (Math.random() * 30 - 15)) + 'px';
+            w.style.top  = (oy + (Math.random() * 14 - 7)) + 'px';
+            const dx = (Math.random() * 100 - 50);
+            const dy = -(170 + Math.random() * 140);
+            w.style.setProperty('--dx', dx + 'px');
+            w.style.setProperty('--dy', dy + 'px');
+            w.style.setProperty('--scale', (3.6 + Math.random() * 1.6).toString());
+            w.style.setProperty('--rot', (Math.random() * 50 - 25) + 'deg');
+            const dur = 1.5 + Math.random() * 0.5;
+            w.style.setProperty('--dur', dur + 's');
+            w.style.animationDelay = (i * 55) + 'ms';
+            veil.appendChild(w);
+        }
+        document.body.appendChild(veil);
+
+        const delay = prefersReduced ? 180 : 520;
+        setTimeout(function () { window.location.href = href; }, delay);
+        // self-cleanup veil after smoke fades
+        setTimeout(function () { veil.remove(); }, 2600);
+    }
 
     /* ---------- Doneness slider ---------- */
     const dn = document.querySelector('.doneness');

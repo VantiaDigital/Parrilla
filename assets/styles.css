@@ -1501,42 +1501,164 @@ section { padding: 110px 0; }
    BESPOKE COMPONENTS — replacing template-y patterns
    ========================================================== */
 
-/* ---------- Smoke wisp — small, subtle, realistic on CTA click ---------- */
+/* ==========================================================
+   QUALITY SMOKE + BUTTON FIRE-ON-HOVER
+   ========================================================== */
+
+/* ---------- Smoke wisp particle (realistic, soft) ---------- */
 .smoke-veil {
     position: fixed;
     inset: 0;
     z-index: 9999;
     pointer-events: none;
     overflow: hidden;
+    contain: layout style paint;
 }
-.veil-puff {
+.wisp {
     position: absolute;
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0.3);
+    transform: translate(-50%, -50%) scale(0.18);
     opacity: 0;
-    /* soft grayish smoke — three subtle gradients for realism */
+    /* asymmetric, multi-layer gradients give an irregular cloud shape */
     background:
-        radial-gradient(circle at 40% 60%, rgba(220, 215, 208, 0.38) 0%, transparent 55%),
-        radial-gradient(circle at 65% 45%, rgba(180, 175, 170, 0.32) 0%, transparent 60%),
-        radial-gradient(circle at 50% 50%, rgba(150, 145, 140, 0.28) 0%, transparent 70%);
-    filter: blur(10px);
+        radial-gradient(ellipse 60% 80% at 40% 55%, rgba(220, 215, 210, 0.22) 0%, transparent 65%),
+        radial-gradient(ellipse 75% 60% at 60% 45%, rgba(190, 188, 184, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 90% at 50% 35%, rgba(160, 158, 155, 0.14) 0%, transparent 75%),
+        radial-gradient(circle at 50% 60%, rgba(140, 138, 135, 0.10) 0%, transparent 70%);
+    filter: blur(14px);
     mix-blend-mode: screen;
-    will-change: transform, opacity;
-    animation: wisp-rise var(--dur, 1.4s) cubic-bezier(.18,.55,.32,1) forwards;
+    will-change: transform, opacity, filter;
+    animation: wisp-drift var(--dur, 2s) cubic-bezier(.22,.55,.30,1) forwards;
 }
-@keyframes wisp-rise {
-    0%   { transform: translate(-50%, -50%) scale(0.3) rotate(0deg); opacity: 0; filter: blur(4px); }
-    20%  { opacity: 0.95; }
-    70%  { opacity: 0.6; }
+@keyframes wisp-drift {
+    0%   {
+        transform: translate(-50%, -50%) scale(0.18) rotate(0deg);
+        opacity: 0;
+        filter: blur(4px);
+    }
+    18%  { opacity: 0.85; }
+    55%  { opacity: 0.55; filter: blur(16px); }
     100% {
-        transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, -180px)))
-                   scale(var(--scale, 3.2))
+        transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, -220px)))
+                   scale(var(--scale, 4))
                    rotate(var(--rot, 20deg));
         opacity: 0;
-        filter: blur(18px);
+        filter: blur(28px);
     }
+}
+
+/* ---------- Button: catches fire on hover ---------- */
+.btn-primary {
+    position: relative;
+    overflow: visible;
+    isolation: isolate;
+    transition:
+        background 0.35s ease,
+        color 0.35s ease,
+        border-color 0.35s ease,
+        transform 0.18s ease,
+        box-shadow 0.5s ease;
+}
+.btn-primary:hover {
+    background: linear-gradient(180deg, #efc77b 0%, #d6a249 50%, #a86d1c 100%);
+    color: #1a0e08;
+    box-shadow:
+        0 0 18px rgba(255, 140, 60, 0.55),
+        0 0 38px rgba(200, 74, 31, 0.35),
+        0 8px 26px rgba(200, 74, 31, 0.30),
+        inset 0 0 14px rgba(255, 200, 110, 0.35);
+    animation: btn-fire-pulse 1.4s ease-in-out infinite;
+}
+@keyframes btn-fire-pulse {
+    0%, 100% {
+        box-shadow:
+            0 0 18px rgba(255, 140, 60, 0.55),
+            0 0 38px rgba(200, 74, 31, 0.35),
+            0 8px 26px rgba(200, 74, 31, 0.30),
+            inset 0 0 14px rgba(255, 200, 110, 0.35);
+    }
+    50% {
+        box-shadow:
+            0 0 26px rgba(255, 170, 90, 0.75),
+            0 0 54px rgba(200, 74, 31, 0.50),
+            0 10px 34px rgba(200, 74, 31, 0.40),
+            inset 0 0 18px rgba(255, 220, 140, 0.50);
+    }
+}
+
+/* Flame licks pseudo-element at the top edge of the button on hover */
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    top: -16px;
+    height: 22px;
+    pointer-events: none;
+    background-image:
+        radial-gradient(ellipse 14px 22px at 10% 100%, rgba(255, 200, 110, 0.95) 0%, rgba(255, 130, 50, 0.65) 35%, transparent 70%),
+        radial-gradient(ellipse 16px 26px at 30% 100%, rgba(255, 220, 140, 0.9) 0%, rgba(255, 130, 50, 0.55) 35%, transparent 70%),
+        radial-gradient(ellipse 12px 18px at 50% 100%, rgba(255, 180, 90, 0.95) 0%, rgba(200, 74, 31, 0.6) 40%, transparent 75%),
+        radial-gradient(ellipse 16px 24px at 70% 100%, rgba(255, 210, 130, 0.95) 0%, rgba(255, 110, 40, 0.6) 35%, transparent 72%),
+        radial-gradient(ellipse 14px 20px at 90% 100%, rgba(255, 195, 100, 0.9) 0%, rgba(200, 74, 31, 0.55) 38%, transparent 72%);
+    filter: blur(2px);
+    opacity: 0;
+    transform: translateY(6px) scaleY(0.6);
+    transform-origin: bottom center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: -1;
+}
+.btn-primary:hover::after {
+    opacity: 0.95;
+    transform: translateY(0) scaleY(1);
+    animation: flame-flicker 0.32s ease-in-out infinite alternate;
+}
+@keyframes flame-flicker {
+    0%   { transform: translateY(0) scaleY(1)    scaleX(1);    filter: blur(2px) brightness(1); }
+    50%  { transform: translateY(-2px) scaleY(1.18) scaleX(0.96); filter: blur(2.5px) brightness(1.2); }
+    100% { transform: translateY(-1px) scaleY(0.92) scaleX(1.04); filter: blur(2px) brightness(0.95); }
+}
+
+/* Container for live embers + smoke spawned by JS while button is hovered */
+.fire-host {
+    position: absolute;
+    left: 0; right: 0;
+    top: -200px;
+    bottom: -30px;
+    pointer-events: none;
+    overflow: visible;
+    z-index: -1;
+}
+.fire-ember {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffd58a 0%, #ff7a2c 60%, transparent 100%);
+    box-shadow: 0 0 8px rgba(255, 130, 50, 0.85);
+    opacity: 0;
+    animation: ember-fly var(--dur, 1.4s) ease-out forwards;
+}
+@keyframes ember-fly {
+    0%   { transform: translate(0, 0) scale(0.6); opacity: 0; }
+    15%  { opacity: 1; }
+    100% { transform: translate(var(--dx, 0px), var(--dy, -120px)) scale(0.3); opacity: 0; }
+}
+.fire-wisp {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0;
+    background:
+        radial-gradient(ellipse 60% 80% at 40% 55%, rgba(220, 215, 210, 0.16) 0%, transparent 70%),
+        radial-gradient(ellipse 75% 60% at 60% 45%, rgba(190, 188, 184, 0.12) 0%, transparent 75%);
+    filter: blur(10px);
+    mix-blend-mode: screen;
+    animation: wisp-drift var(--dur, 1.8s) cubic-bezier(.22,.55,.30,1) forwards;
 }
 
 /* ---------- Doneness slider (menu) ---------- */
