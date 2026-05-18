@@ -261,6 +261,96 @@ h1, h2, h3, h4, h5 {
     flex-wrap: wrap;
 }
 
+/* ---------- Argentine flag badge (pinned to hero) ---------- */
+.ar-badge {
+    position: absolute;
+    top: 110px;
+    right: 32px;
+    z-index: 5;
+    display: flex;
+    align-items: stretch;
+    background: rgba(10, 8, 7, 0.78);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 165, 92, 0.4);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255,255,255,0.02);
+    transition: transform 0.4s cubic-bezier(.2,.9,.2,1), box-shadow 0.4s ease;
+    overflow: hidden;
+    max-width: 320px;
+}
+.ar-badge:hover {
+    transform: translateY(-3px) rotate(-1deg);
+    box-shadow: 0 22px 52px rgba(0, 0, 0, 0.6), 0 0 36px rgba(116, 172, 223, 0.18);
+}
+/* Argentine flag stripes — celeste / blanco / celeste */
+.ar-stripes {
+    width: 12px;
+    flex-shrink: 0;
+    background:
+        linear-gradient(
+            180deg,
+            #74acdf 0%, #74acdf 33.33%,
+            #ffffff 33.33%, #ffffff 66.66%,
+            #74acdf 66.66%, #74acdf 100%
+        );
+    position: relative;
+}
+.ar-stripes::after {
+    /* sol de mayo dot in the middle white band */
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #f5c542 0%, #d49b1a 60%, #a06a00 100%);
+    box-shadow: 0 0 4px rgba(245, 197, 66, 0.6);
+}
+.ar-badge-text {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+}
+.ar-badge-flag {
+    font-size: 1.7rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
+}
+.ar-badge-line {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    line-height: 1.2;
+}
+.ar-badge-line strong {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+.ar-badge-line em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.01em;
+}
+
+@media (max-width: 720px) {
+    .ar-badge {
+        top: 96px;
+        right: 16px;
+        max-width: 220px;
+    }
+    .ar-badge-text { padding: 10px 12px; gap: 10px; }
+    .ar-badge-flag { font-size: 1.3rem; }
+    .ar-badge-line strong { font-size: 0.62rem; letter-spacing: 0.14em; }
+    .ar-badge-line em { font-size: 0.72rem; }
+}
+
 /* ---------- BUTTONS ---------- */
 .btn {
     display: inline-flex;
