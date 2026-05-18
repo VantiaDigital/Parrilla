@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book an Asado — Los Hermanos Parrilleros</title>
+    <meta name="description" content="Request a quote for an Argentine asado in Barcelona. Send your date, headcount and location — we'll come back within 24 hours." />
+    <meta name="theme-color" content="#0a0807" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">Los Hermanos Parrilleros</span>
+                <span class="brand-sub">Argentine asado · Barcelona</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="experience.html">The Experience</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <a href="book.html" class="nav-cta">Book an Asado</a>
+            <button class="menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="nav-spacer"></div>
+
+    <!-- INTRO -->
+    <section style="padding-bottom: 50px;">
+        <div class="container">
+            <div class="section-head reveal" style="max-width: 820px;">
+                <span class="eyebrow">Book an asado</span>
+                <h2>Tell us the basics.<br /><em>We'll send a quote within 24 hours.</em></h2>
+                <p class="lead">
+                    No payment, no commitment until you confirm. The form opens a WhatsApp
+                    message pre-filled with your answers — or write to us directly using the
+                    contacts on the right.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section style="padding-top: 0;">
+        <div class="container">
+            <div class="booking-grid reveal">
+
+                <!-- FORM -->
+                <form id="booking-form" class="booking-form" data-phone="34652251002" autocomplete="on">
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="name">Your name</label>
+                            <input type="text" id="name" name="name" required placeholder="Jane Smith" />
+                        </div>
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="jane@example.com" />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="event_type">Type of event</label>
+                            <select id="event_type" name="event_type" required>
+                                <option value="">Choose one…</option>
+                                <option value="Airbnb / vacation rental">Airbnb / vacation rental</option>
+                                <option value="Birthday">Birthday</option>
+                                <option value="Bachelor / bachelorette">Bachelor / bachelorette</option>
+                                <option value="Wedding">Wedding</option>
+                                <option value="Corporate retreat">Corporate retreat</option>
+                                <option value="Private dinner">Private dinner</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="date">Preferred date</label>
+                            <input type="date" id="date" name="date" required />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="guests">Number of guests</label>
+                            <input type="number" id="guests" name="guests" min="2" max="100" required placeholder="e.g. 12" />
+                        </div>
+                        <div class="field">
+                            <label for="place">Where? (or "need venue")</label>
+                            <input type="text" id="place" name="place" required placeholder="Carrer de... / Sitges / need a venue" />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="field full">
+                            <label for="message">Anything we should know? (optional)</label>
+                            <textarea id="message" name="message" placeholder="Allergies, dietary needs, the vibe you're hoping for, special requests…"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-large form-submit">
+                        Send via WhatsApp →
+                    </button>
+
+                    <p style="margin-top: 18px; font-size: 0.82rem; color: var(--ink-mute); text-align: center;">
+                        Opens a WhatsApp chat with Bruno, pre-filled with your answers. You can edit before sending.
+                    </p>
+                </form>
+
+                <!-- DIRECT CONTACT -->
+                <aside class="contact-card">
+                    <h3>Prefer to write directly?</h3>
+
+                    <div class="contact-person">
+                        <div class="name">Bruno Goette</div>
+                        <div class="line">
+                            <span style="color: var(--ink-mute); font-size: 0.78rem; letter-spacing: 0.18em;">WHATSAPP</span>
+                            <a href="https://wa.me/34652251002" target="_blank" rel="noopener">+34 652 25 10 02</a>
+                        </div>
+                        <div class="line">
+                            <span style="color: var(--ink-mute); font-size: 0.78rem; letter-spacing: 0.18em;">EMAIL</span>
+                            <a href="mailto:brunogoette2002@gmail.com">brunogoette2002@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-person">
+                        <div class="name">Facu Goette</div>
+                        <div class="line">
+                            <span style="color: var(--ink-mute); font-size: 0.78rem; letter-spacing: 0.18em;">WHATSAPP</span>
+                            <a href="https://wa.me/34645720420" target="_blank" rel="noopener">+34 645 72 04 20</a>
+                        </div>
+                        <div class="line">
+                            <span style="color: var(--ink-mute); font-size: 0.78rem; letter-spacing: 0.18em;">EMAIL</span>
+                            <a href="mailto:facugoette8@gmail.com">facugoette8@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--ink-soft); line-height: 1.7;">
+                        <strong style="color: var(--gold); font-weight: 500;">Response time:</strong>
+                        Within 24 hours, usually faster. We reply in English and Spanish.
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT HAPPENS NEXT -->
+    <section class="stat-strip">
+        <div class="container">
+            <div class="section-head center reveal">
+                <span class="eyebrow center">After you send</span>
+                <h2>What happens next.</h2>
+            </div>
+
+            <div class="feature-grid reveal">
+                <div class="feature">
+                    <div class="feature-num">01</div>
+                    <h3>Within 24 hours</h3>
+                    <p>We reply with a per-person quote, a suggested menu, and a venue plan if you asked for one.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-num">02</div>
+                    <h3>We refine together</h3>
+                    <p>Swap cuts, adjust the headcount, change the date. No commitment until both sides are happy.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-num">03</div>
+                    <h3>30% deposit</h3>
+                    <p>Lock the date with a transfer, Bizum or card payment. Balance settled the day of the event.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-num">04</div>
+                    <h3>We show up</h3>
+                    <p>90 minutes before the start. You open the door. We do the rest.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h4>Los Hermanos Parrilleros</h4>
+                    <p>Authentic Argentine asado, brought to your terrace, garden, rooftop or rented venue anywhere in Barcelona.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Explore</h5>
+                    <ul>
+                        <li><a href="experience.html">The Experience</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="https://wa.me/34652251002" target="_blank" rel="noopener">+34 652 25 10 02 · Bruno</a></li>
+                        <li><a href="https://wa.me/34645720420" target="_blank" rel="noopener">+34 645 72 04 20 · Facu</a></li>
+                        <li><a href="mailto:brunogoette2002@gmail.com">brunogoette2002@gmail.com</a></li>
+                        <li><a href="mailto:facugoette8@gmail.com">facugoette8@gmail.com</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Service area</h5>
+                    <ul>
+                        <li>Barcelona city</li>
+                        <li>Sitges &amp; Garraf</li>
+                        <li>Maresme coast</li>
+                        <li>Penedès &amp; Empordà</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Los Hermanos Parrilleros · Barcelona, Spain</span>
+                <span><a href="index.html">← Back to Home</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>
