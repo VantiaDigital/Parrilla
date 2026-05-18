@@ -248,29 +248,12 @@ h1, h2, h3, h4, h5 {
     font-size: clamp(3rem, 8vw, 6.5rem);
     color: var(--ink);
     margin: 18px 0 12px;
-    /* Argentine flag fill on the title letters */
-    background: linear-gradient(
-        180deg,
-        #74acdf 0%, #74acdf 33.33%,
-        #ffffff 33.33%, #ffffff 66.66%,
-        #74acdf 66.66%, #74acdf 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    filter: drop-shadow(0 4px 18px rgba(10, 8, 7, 0.7));
-    display: inline-block;
-    line-height: 1.05;
 }
 
 .hero h1 em {
     font-style: italic;
-    font-weight: 300;
-    /* keep italic part in solid gold over the flag */
-    background: none;
-    -webkit-text-fill-color: var(--gold);
     color: var(--gold);
+    font-weight: 300;
 }
 
 .hero .lead {
