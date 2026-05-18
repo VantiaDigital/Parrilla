@@ -845,3 +845,545 @@ section { padding: 110px 0; }
     }
     .spec-desc { text-align: left; }
 }
+
+/* ==========================================================
+   DISTINCTIVE LAYER — shapes, asymmetry, micro-interactions
+   Visually differentiates this site from other client work.
+   ========================================================== */
+
+/* ---------- Scroll progress bar ---------- */
+.scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--ember), var(--gold));
+    z-index: 200;
+    transition: width 0.08s linear;
+    box-shadow: 0 0 12px rgba(201, 165, 92, 0.6);
+}
+
+/* ---------- Diagonal section divider ---------- */
+.cut-top {
+    position: relative;
+    clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
+}
+.cut-bottom {
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
+}
+.cut-both {
+    clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+}
+
+/* ---------- Decorative oversized numeral ---------- */
+.deco-numeral {
+    position: absolute;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.06;
+    font-size: clamp(14rem, 30vw, 28rem);
+    line-height: 0.8;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
+.deco-numeral.tl { top: -40px; left: -20px; }
+.deco-numeral.tr { top: -40px; right: -20px; }
+.deco-numeral.bl { bottom: -40px; left: -20px; }
+.deco-numeral.br { bottom: -40px; right: -20px; }
+
+/* ---------- Stamp / badge ---------- */
+.stamp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 110px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    color: var(--gold);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.86rem;
+    text-align: center;
+    line-height: 1.2;
+    transform: rotate(-8deg);
+    position: relative;
+    transition: transform 0.6s cubic-bezier(.2,.9,.2,1);
+}
+.stamp::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px dashed rgba(201, 165, 92, 0.35);
+    border-radius: 50%;
+}
+.stamp:hover { transform: rotate(0) scale(1.05); }
+
+/* ---------- Marquee ticker ---------- */
+.marquee {
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-soft);
+    padding: 26px 0;
+    position: relative;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+    display: flex;
+    gap: 64px;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+    will-change: transform;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-item {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+.marquee-item .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    vertical-align: middle;
+    margin: 0 28px;
+    transform: translateY(-4px);
+}
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* ---------- Cut-corner card ---------- */
+.cut-card {
+    background: var(--bg-soft);
+    padding: 44px 36px;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 28px 100%, 0 calc(100% - 28px));
+    transition: transform 0.4s cubic-bezier(.2,.9,.2,1), background 0.3s ease;
+}
+.cut-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 28px; height: 28px;
+    background: var(--gold);
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    opacity: 0.6;
+}
+.cut-card:hover {
+    transform: translateY(-6px);
+    background: var(--bg-card);
+}
+
+/* ---------- Tilt card (JS-driven 3D) ---------- */
+.tilt {
+    transform-style: preserve-3d;
+    transition: transform 0.18s ease-out;
+    will-change: transform;
+}
+.tilt > * { transform: translateZ(0); }
+
+/* ---------- Magnetic CTA wrapper ---------- */
+.magnet {
+    display: inline-block;
+    transition: transform 0.18s cubic-bezier(.2,.9,.2,1);
+    will-change: transform;
+}
+
+/* ---------- Sweep underline on link/btn ---------- */
+.sweep {
+    position: relative;
+    overflow: hidden;
+}
+.sweep::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+.sweep:hover::before { transform: translateX(100%); }
+
+/* ---------- Letter reveal for hero h1 ---------- */
+.split-chars { display: inline-block; }
+.split-chars .char {
+    display: inline-block;
+    transform: translateY(110%);
+    opacity: 0;
+    transition: transform 0.7s cubic-bezier(.2,.9,.2,1), opacity 0.5s ease;
+    transition-delay: calc(var(--i) * 35ms);
+}
+.split-chars.in .char {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ---------- Image clip-reveal on scroll ---------- */
+.clip-reveal {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.2s cubic-bezier(.85,0,.15,1);
+}
+.clip-reveal.in { clip-path: inset(0 0 0 0); }
+
+/* ---------- Counter num ---------- */
+.counter { display: inline-block; }
+
+/* ---------- Brothers typographic spread (no image) ---------- */
+.bro-spread {
+    position: relative;
+    padding: 96px 0;
+    overflow: hidden;
+}
+.bro-names {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    line-height: 0.86;
+    pointer-events: none;
+}
+.bro-names span {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(4.2rem, 12vw, 11rem);
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    transition: transform 0.6s cubic-bezier(.2,.9,.2,1), color 0.4s ease, text-shadow 0.4s ease;
+    will-change: transform;
+}
+.bro-names span.amp {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+    margin-left: 1.6em;
+    font-size: clamp(3.4rem, 10vw, 9rem);
+}
+.bro-names span.second {
+    margin-left: 0.8em;
+    color: var(--ink-soft);
+}
+.bro-names:hover span:first-child {
+    transform: translateX(-12px);
+    color: var(--gold);
+}
+.bro-names:hover span.second {
+    transform: translateX(12px);
+    color: var(--ink);
+    text-shadow: 0 0 30px rgba(201,165,92,0.3);
+}
+
+.bro-tags {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+}
+.bro-tag {
+    border: 1px solid var(--line);
+    padding: 8px 18px;
+    font-size: 0.74rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+.bro-tag:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-2px);
+}
+
+/* ---------- Brothers stacked manifesto (about page) ---------- */
+.bro-manifesto {
+    display: grid;
+    grid-template-columns: 0.6fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+    padding: 60px 0;
+    position: relative;
+}
+.bro-manifesto .stamp-col {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position: sticky;
+    top: 120px;
+}
+.bro-manifesto .signature {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-top: 12px;
+}
+@media (max-width: 980px) {
+    .bro-manifesto { grid-template-columns: 1fr; gap: 40px; }
+    .bro-manifesto .stamp-col { position: static; }
+}
+
+/* ---------- Section eyebrow rail (sticky) ---------- */
+.rail-section {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 80px;
+    position: relative;
+}
+.rail-side {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+}
+.rail-side .eyebrow { display: block; margin-bottom: 18px; }
+.rail-side h2 {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.1;
+}
+@media (max-width: 980px) {
+    .rail-section { grid-template-columns: 1fr; gap: 32px; }
+    .rail-side { position: static; }
+}
+
+/* ---------- Enhanced button hover ---------- */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, var(--gold-soft) 0%, var(--ember) 50%, var(--gold-soft) 100%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.6s ease;
+    z-index: -1;
+}
+.btn-primary:hover::after { background-position: 0 0; }
+
+.btn-ghost {
+    position: relative;
+    overflow: hidden;
+}
+.btn-ghost::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: translateY(101%);
+    transition: transform 0.35s cubic-bezier(.2,.9,.2,1);
+    z-index: -1;
+}
+.btn-ghost:hover {
+    color: var(--bg);
+    border-color: var(--gold);
+}
+.btn-ghost:hover::before { transform: translateY(0); }
+
+/* ---------- Nav link refined hover ---------- */
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s cubic-bezier(.2,.9,.2,1);
+}
+.nav-links a:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* ---------- Feature card uplift ---------- */
+.feature {
+    transition: background 0.3s ease, transform 0.4s cubic-bezier(.2,.9,.2,1);
+    position: relative;
+    overflow: hidden;
+}
+.feature::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 3px;
+    height: 0;
+    background: linear-gradient(180deg, var(--gold), var(--ember));
+    transition: height 0.5s ease;
+}
+.feature:hover::after { height: 100%; }
+.feature:hover .feature-num { color: var(--ink); }
+.feature-num { transition: color 0.4s ease; }
+
+/* ---------- Event card distinctive ---------- */
+.event-card {
+    position: relative;
+    overflow: hidden;
+}
+.event-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 36px 36px 0;
+    border-color: transparent var(--gold) transparent transparent;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+.event-card:hover::before { opacity: 1; }
+
+/* ---------- Quote section dramatic ---------- */
+.quote-section blockquote {
+    position: relative;
+    z-index: 2;
+}
+.quote-section .quote-glyph {
+    position: absolute;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(14rem, 30vw, 26rem);
+    color: var(--gold);
+    opacity: 0.05;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+    line-height: 0.6;
+}
+
+/* ---------- Booking form distinctive ---------- */
+.booking-form.cut {
+    clip-path: polygon(0 0, calc(100% - 32px) 0, 100% 32px, 100% 100%, 32px 100%, 0 calc(100% - 32px));
+    position: relative;
+}
+.booking-form.cut::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 32px; height: 32px;
+    background: var(--gold);
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+.booking-form.cut::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 32px; height: 32px;
+    background: var(--gold);
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+    opacity: 0.6;
+}
+.field input,
+.field select,
+.field textarea {
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    background: rgba(201, 165, 92, 0.04);
+}
+
+/* ---------- Hero h1 layered effect ---------- */
+.hero h1 {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- Footer credit ---------- */
+.credit {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink-mute);
+    transition: color 0.3s ease;
+}
+.credit a {
+    color: var(--gold);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+.credit a:hover {
+    border-color: var(--gold);
+    color: var(--gold-soft);
+}
+
+/* ---------- Reveal stagger children ---------- */
+.reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.9,.2,1);
+}
+.reveal-stagger.in > * { opacity: 1; transform: translateY(0); }
+.reveal-stagger.in > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger.in > *:nth-child(2) { transition-delay: 80ms; }
+.reveal-stagger.in > *:nth-child(3) { transition-delay: 160ms; }
+.reveal-stagger.in > *:nth-child(4) { transition-delay: 240ms; }
+.reveal-stagger.in > *:nth-child(5) { transition-delay: 320ms; }
+.reveal-stagger.in > *:nth-child(6) { transition-delay: 400ms; }
+
+/* ---------- Smoke / ember in hero ---------- */
+.embers {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.ember {
+    position: absolute;
+    bottom: -10px;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--ember);
+    opacity: 0;
+    animation: rise 7s linear infinite;
+}
+@keyframes rise {
+    0%   { transform: translateY(0) translateX(0) scale(0.6); opacity: 0; }
+    10%  { opacity: 0.7; }
+    50%  { transform: translateY(-50vh) translateX(20px) scale(1); opacity: 0.5; }
+    100% { transform: translateY(-100vh) translateX(-15px) scale(0.4); opacity: 0; }
+}
+
+/* ---------- Stat counter pulse on reveal ---------- */
+.stat-num {
+    transition: color 0.4s ease, transform 0.5s cubic-bezier(.2,.9,.2,1);
+    display: inline-block;
+}
+.stat-num.pulse { animation: pulse 0.8s ease; }
+@keyframes pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.08); color: var(--gold-soft); }
+    100% { transform: scale(1); }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    .marquee-track { animation: none; }
+    .embers { display: none; }
+}

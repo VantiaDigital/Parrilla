@@ -2,7 +2,7 @@
 
 Authentic Argentine asado catering in Barcelona — static website for English-speaking travelers, expats and event hosts.
 
-**Live brand:** Bruno & Facu Goette · Barcelona
+**Live brand:** Bruno & Facundo Goette · Barcelona
 **Domain:** loshermanosparrilleros.com
 
 ## Stack
@@ -23,8 +23,7 @@ Pure static HTML / CSS / JS. No build step, no dependencies. Deploy by uploading
     ├── styles.css    # Shared stylesheet
     ├── app.js        # Shared scripts (mobile nav, reveal, form → WhatsApp)
     └── images/
-        ├── asado-hero.jpg
-        └── brothers.jpg
+        └── asado-hero.jpg
 ```
 
 ## Booking flow
@@ -50,4 +49,4 @@ npx serve .
 ## Contact
 
 - Bruno: +34 652 25 10 02 · brunogoette2002@gmail.com
-- Facu: +34 645 72 04 20 · facugoette8@gmail.com
+- Facundo: +34 645 72 04 20 · facugoette8@gmail.com
