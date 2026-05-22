@@ -1,0 +1,5 @@
+# robots.txt — Los Hermanos Parrilleros
+User-agent: *
+Allow: /
+
+Sitemap: https://loshermanosparrilleros.pages.dev/sitemap.xml
